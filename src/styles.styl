@@ -1,0 +1,52 @@
+html, body
+  margin: 0px
+  padding: 0px
+  width: 100%
+  height: 100%
+  font-size: 14px
+  font-family: Arial, sans-serif
+  background-color: #f5f5f5
+  min-width: 305px
+
+for $i in (0..100)
+  .m-{$i}
+    margin: $i* 1px
+  .ml-{$i}
+    margin-left: $i * 1px
+  .mr-{$i}
+    margin-right: $i * 1px
+  .mt-{$i}
+    margin-top: $i * 1px
+  .mb-{$i}
+    margin-bottom: $i * 1px
+  .p-{$i}
+    padding: $i * 1px
+  .pl-{$i}
+    padding-left: $i * 1px
+  .pr-{$i}
+    padding-right: $i * 1px
+  .pb-{$i}
+    padding-bottom: $i * 1px
+  .pt-{$i}
+    padding-top: $i * 1px
+for $i in (10..40)
+  .fs-{$i}
+    font-size: $i * 1px
+for $i in (0..10)
+  .rounded-{$i}
+    border-radius: $i * 1px
+
+.content-container
+  padding: 50px
+  @media (min-width: 0px) and (max-width: 768px)
+    padding-left: 15px
+    padding-right: 15px
+    padding-top: 15px
+.block-container
+  // border: 1px #eee solid
+  background-color: white
+  border-radius: 5px
+  padding: 36px
+  @media (min-width: 0px) and (max-width: 768px)
+    padding-left: 15px
+    padding-right: 15px

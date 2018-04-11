@@ -109,16 +109,15 @@ xxx.pug
   - pr-x 为元素增加 padding-right: xpx 的效果
   - pb-x 为元素增加 padding-bottom: xpx 的效果
   - pt-x 为元素增加 padding-top: xpx 的效果
-  - margin的用法和上面的一样，注意，x必须是5的倍数，并且最大值为100
+  - margin的用法和上面的一样，并且最大值为100
 
-* font-size: `fs-*`，对应：`font-size`，`*` 表示间隔，`gap = 1`，最小值是 10，最大值是 40
+* font-size: `fs-*`，对应：`font-size`，`*` 表示间隔，数值范围[10, 40]
+* border-radius: `rounded-*`, `*`数值范围[0, 10]
 
 * 布局类
 
   - `block-container`
-  - `content-container`
-
-* background-color: `bg-*`
+  - `content-container` (层级上比`block-container`大, 是容纳页面所有元素)
 
 ### 响应式
 
