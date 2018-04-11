@@ -141,6 +141,7 @@ Shudong 主站主要做两种类型的响应式。
 @media (min-width: 768px)
   // your stylus code
 ```
+> 具体实现策略------AntD的[Grid系统](https://ant.design/components/grid-cn/#components-grid-demo-playground)
 
 
 
