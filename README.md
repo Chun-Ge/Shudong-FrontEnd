@@ -14,7 +14,7 @@ npm start
 
 ### 开发注意事项
 
-* 大家开发的时候不可以使用 `master` 或者 `dev`(每次迭代时master的增量副本) 分支直接开发, 用 dev 分支切新分支开发然后提PR
+* 大家开发的时候不可以使用 `master`稳定分支 或者 `dev`开发分支直接开发, 而是用 `dev` 分支切新分支coding 然后提 pr
 * 请使用 `feature/***(你的特性名称)`，例如 feature/login-modal 表示实现了新的 feature
 * 遇到线上 bug 的时候，从 `master / dev` 切出分支，命名为 `hotfix/****(修复的bug)`
 
