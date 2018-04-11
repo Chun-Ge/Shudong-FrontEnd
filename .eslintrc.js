@@ -91,6 +91,8 @@ module.exports =   {
     }],
     // every sentence ends with ';'
     'semi': 'error',
+    // only tab for intent
+    "indent": ["error", "tab"]
 
 
     }
