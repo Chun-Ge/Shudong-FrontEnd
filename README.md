@@ -14,9 +14,9 @@ npm start
 
 ### 开发注意事项
 
-* 大家开发的时候不可以使用 master 或者 dev(每次迭代时master的增量副本) 分支直接开发, 用 dev 分支切新分支开发, 每次迭代完毕合并dev到master上.
-* 请使用 feature/***(你的特性名称)，例如 feature/login-modal 表示实现了新的 feature
-* 遇到线上 bug 的时候，从 master 切出分支（master也是一样），命名为 hotfix/****(修复的bug)
+* 大家开发的时候不可以使用 `master` 或者 `dev`(每次迭代时master的增量副本) 分支直接开发, 用 dev 分支切新分支开发然后提PR
+* 请使用 `feature/***(你的特性名称)`，例如 feature/login-modal 表示实现了新的 feature
+* 遇到线上 bug 的时候，从 `master / dev` 切出分支，命名为 `hotfix/****(修复的bug)`
 
 ### 组件解决方案
 [antd](https://github.com/ant-design-vue/antv)
@@ -117,7 +117,7 @@ xxx.pug
 * 布局类
 
   - `block-container`
-  - `content-container` (层级上比`block-container`大, 是容纳页面所有元素)
+  - `content-container` (层级上比`block-container`大, 容纳页面所有元素)
 
 ### 响应式
 
