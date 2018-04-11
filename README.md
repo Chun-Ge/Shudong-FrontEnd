@@ -30,7 +30,7 @@ npm start
 [Airbnb JavaScript Style Guide](https://github.com/yuche/javascript)
 注意这个规范十分严格,而且项目引入了ESLint, 所以不遵守的话, 没法通过编译, 目前主要引入规则如下:
 - 变量驼峰命名
-- 不允许使用var, 而是用`let`或者`const`,而且每一条定义变量语句都要使用`const`|| `let`, 也就是说不允许在其他作用域定全局变量.
+- 不允许使用`var`, 而是用`let`或者`const`,而且每一条定义变量语句都要使用`const`|| `let`, 也就是说不允许在其他作用域定全局变量.
 - 不允许使用`for迭代`,应当用`every, forEach, map, reduce`等遍历函数, 有点类似函数式编程的思想.
 - 关键字,操作符周围必须有空格, 大括号前也要有空格.
 - 使用字面值 ( `[], {}, "" `等) 构造变量, 而不是`new`.
