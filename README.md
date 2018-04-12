@@ -113,7 +113,7 @@ xxx.pug
 
 ### 辅助类
 
-可以在 `src/styles.styl` 看到辅助的类的配置
+可以在 `src/common.styl` 看到辅助的类的配置
 
 * margin和padding的效果，主要有:
 
