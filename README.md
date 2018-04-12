@@ -29,7 +29,7 @@ npm start
 ### ESLint/Airbnb
 [Airbnb JavaScript Style Guide](https://github.com/yuche/javascript)
 注意这个规范十分严格,而且项目引入了ESLint, 所以不遵守的话, 没法通过编译, 目前主要引入规则如下:
-- 只允许`tab`缩进
+- 只允许`2 space`缩进
 - 变量驼峰命名
 - 不允许使用`var`, 而是用`let`或者`const`,而且每一条定义变量语句都要使用`const`|| `let`, 也就是说不允许在其他作用域定全局变量.
 - 不允许使用`for迭代`,应当用`every, forEach, map, reduce`等遍历函数, 有点类似函数式编程的思想.
@@ -74,12 +74,24 @@ npm start
 ```text
 // your comment ...
 ```
+
+### 文件结构规范
+虽然vue的标准实践是模板HTML, CSS, JS文件三位一体,聚集在一个文件中, 但是我们如果代码量大的话, 维护会很麻烦, 因此我们要分离关注点, 一个组件文件夹下, 有3个类文件,表示三个关注点(样式, HTML结构, js逻辑)
+```bash
+<!-- my-component.vue -->
+<template>
+  <div>This will be pre-compiled</div>
+</template>
+<script src="./my-component.js"></script>
+<style src="./my-component.css"></style>
+```
+
 ### 命名规范
-* 文件名: `(kebab-case)作用.性质.扩展名`
+* 文件名: `(kebab-case)作用.扩展名`
 ```text
-profile-setting.component.ts
-profile-setting.component.pug
-profile-setting.component.styl
+profile-setting.vue
+profile-setting.ts
+profile-setting.styl
 ```
 * 文件夹名: `kebab-case`
 ```text
@@ -88,7 +100,7 @@ profile-setting.component.styl
 
 ```
 * 组件名: `PascalCase`, 若在模板HTML内则`kebab-case`
-```text
+```vue
 xxx.ts
 Vue.component('MyComponent', {
   // ...
@@ -115,7 +127,7 @@ xxx.pug
 * font-size: `fs-*`，对应：`font-size`，`*` 表示间隔，数值范围[10, 40]
 * border-radius: `rounded-*`, `*`数值范围[0, 10]
 
-* 布局类
+* 布局类(这个可能废弃, 看开发情况)
 
   - `block-container`
   - `content-container` (层级上比`block-container`大, 容纳页面所有元素)
@@ -143,5 +155,6 @@ Shudong 主站主要做两种类型的响应式。
 ```
 > 具体实现策略------AntD的[Grid系统](https://ant.design/components/grid-cn/#components-grid-demo-playground)
 
-
+## 建议
+- 使用chrome上的Vue Devtools
 
