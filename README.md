@@ -73,6 +73,8 @@ npm start
 
 ```text
 // your comment ...
+```
+
 ### 文件结构规范
 虽然vue的标准实践是模板HTML, CSS, JS文件三位一体,聚集在一个文件中, 但是我们如果代码量大的话, 维护会很麻烦, 因此我们要分离关注点, 一个组件文件夹下, 有3个类文件,表示三个关注点(样式, HTML结构, js逻辑)
 ```bash
@@ -83,7 +85,7 @@ npm start
 <script src="./my-component.js"></script>
 <style src="./my-component.css"></style>
 ```
-```
+
 ### 命名规范
 * 文件名: `(kebab-case)作用.扩展名`
 ```text
