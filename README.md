@@ -127,7 +127,7 @@ xxx.pug
 * font-size: `fs-*`，对应：`font-size`，`*` 表示间隔，数值范围[10, 40]
 * border-radius: `rounded-*`, `*`数值范围[0, 10]
 
-* 布局类
+* 布局类(这个可能废弃, 看开发情况)
 
   - `block-container`
   - `content-container` (层级上比`block-container`大, 容纳页面所有元素)
