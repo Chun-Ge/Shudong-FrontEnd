@@ -73,13 +73,23 @@ npm start
 
 ```text
 // your comment ...
+### 文件结构规范
+虽然vue的标准实践是模板HTML, CSS, JS文件三位一体,聚集在一个文件中, 但是我们如果代码量大的话, 维护会很麻烦, 因此我们要分离关注点, 一个组件文件夹下, 有3个类文件,表示三个关注点(样式, HTML结构, js逻辑)
+```bash
+<!-- my-component.vue -->
+<template>
+  <div>This will be pre-compiled</div>
+</template>
+<script src="./my-component.js"></script>
+<style src="./my-component.css"></style>
+```
 ```
 ### 命名规范
-* 文件名: `(kebab-case)作用.性质.扩展名`
+* 文件名: `(kebab-case)作用.扩展名`
 ```text
-profile-setting.component.ts
-profile-setting.component.pug
-profile-setting.component.styl
+profile-setting.vue
+profile-setting.ts
+profile-setting.styl
 ```
 * 文件夹名: `kebab-case`
 ```text
@@ -88,7 +98,7 @@ profile-setting.component.styl
 
 ```
 * 组件名: `PascalCase`, 若在模板HTML内则`kebab-case`
-```text
+```vue
 xxx.ts
 Vue.component('MyComponent', {
   // ...
