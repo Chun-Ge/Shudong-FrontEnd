@@ -1,10 +1,9 @@
 // axios usage: https://github.com/axios/axios
 import axios from 'axios';
-import { Response } from '../model/response'
 import { protocol, baseUrl } from '../../config/env'
 
 export interface HttpOptions {
-    headers: object, 
+    headers?: object, 
     url?: string,
     data?: object 
 }
@@ -55,7 +54,7 @@ export const HttpService = {
     head(url: string, options?: HttpOptions) : Promise<any> {
         return axios.head(api(url), options)
     },
-    
+
     request(options: HttpOptions) : Promise<any> {
         let opt = {...options};
         opt.headers['Content-type'] = encFormat;
