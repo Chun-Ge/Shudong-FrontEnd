@@ -20,6 +20,7 @@ npm start
 
 ### 组件解决方案
 [antd](https://ant-design-vue.github.io/antv-doc/index-cn)
+[font awesome icon](https://fontawesome.com/icons?d=gallery)
 
 ## 规范
 
