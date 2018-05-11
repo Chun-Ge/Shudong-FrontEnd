@@ -13,7 +13,7 @@ const PREFIX = '';
 const encFormat = 'application/json';
 
 function api(url: string) {
-    return `${baseUrl}/${PREFIX}/${url.replace(/^\//, '')}`;
+    return `${protocol}:${baseUrl}/${PREFIX}/${url.replace(/^\//, '')}`;
 }
 
 function toJsonType(options: object) {

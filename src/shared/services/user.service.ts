@@ -1,4 +1,4 @@
-import { HttpService } from  './api-service';
+import { HttpService } from  './api.service';
 import { Response } from '../model/response'
 import { UserInfo } from '../model/user'
 
