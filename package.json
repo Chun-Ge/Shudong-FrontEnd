@@ -14,7 +14,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "antv": "^0.2.2",
+    "axios": "^0.18.0",
     "vue": "^2.5.16",
+    "vue-axios": "^2.1.1",
     "vue-class-component": "^6.2.0",
     "vue-property-decorator": "^6.0.0",
     "vue-router": "^3.0.1",

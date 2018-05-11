@@ -69,8 +69,8 @@ module.exports =   {
       // use '' instead of ""
       'quotes': ['error', 'single'],
       // when you need anonymous function, use arrow function notation
-      'prefer-arrow-callback': 'error',
-      'arrow-spacing': 'error',
+      'prefer-arrow-callback': 'warn',
+      'arrow-spacing': 'warn',
       // import
       'no-duplicate-imports': 'error',
       // Use === and !== over == and !=
@@ -80,19 +80,20 @@ module.exports =   {
         'properties': 'always'
       }],
       // Blocks
-      'nonblock-statement-body-position': 'error',
+      'nonblock-statement-body-position': 'warn',
       // Commas
-      'comma-dangle': ['error', {
-        'arrays': 'ignore',
-        'objects': 'ignore',
-        'imports': 'never',
-        'exports': 'never',
-        'functions': 'ignore'
-    }],
+    //   'comma-dangle': ['error', {
+    //     'arrays': 'ignore',
+    //     'objects': 'ignore',
+    //     'imports': 'never',
+    //     'exports': 'never',
+    //     'functions': 'ignore'
+    // }],
     // every sentence ends with ';'
     'semi': 'error',
     // only tab for intent
-    "indent": ["error", 2]
+    'indent': ['warn', 2],
+    // 'no-trailing-spaces': 'warn'
 
 
     }
