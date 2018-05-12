@@ -13,19 +13,25 @@ const PREFIX = '';
 const encFormat = 'application/json';
 
 function api(url: string) {
-    return `${protocol}:${baseUrl}/${PREFIX}/${url.replace(/^\//, '')}`;
+    return `${protocol}:${baseUrl}${PREFIX}/${url.replace(/^\//, '')}`;
 }
 
 function toJsonType(options: object) {
-    let opt = {...options};
-    if (opt === undefined || opt === null) {
+    let opt = {};
+    const defaultOpt = {
+        headers: {
+            'Content-type': encFormat
+        }
+    }
+    if (options === undefined || options === null) {
+        opt = defaultOpt;
+    } else if (!options['headers']){
         opt = {
-            headers: {
-                'Content-type': encFormat
-            }
+            ...options,
+            ...defaultOpt
         }
     } else {
-        opt['headers']['Content-type'] = encFormat;
+         opt['headers']['Content-type'] = encFormat;
     }
     return opt;
 }
@@ -36,6 +42,7 @@ export const HttpService = {
     },
 
     post(url: string, data: object, options?: HttpOptions): Promise<any> {
+        console.log(api(url));
         return axios.post(api(url), data, toJsonType(options));
     },
 

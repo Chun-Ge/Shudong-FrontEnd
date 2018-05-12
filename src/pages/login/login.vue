@@ -6,10 +6,10 @@
 
       .panel-body
         .login-info
-          v-input(type='text' v-model='email' placeholder="邮箱名")
+          v-input(type='text' v-model='username' placeholder="邮箱名")
           v-input(type='password' v-model='password' placeholder="密码")
         .login-option 忘记密码？
-        .login-confirm
+        .login-confirm(@click='submit')
           v-button(type="primary") 登陆
 
       .panel-footer
@@ -17,5 +17,5 @@
           span 注册
 </template>
 
-<script src='./login.ts'></script>
+<script src='./login.ts' lang='ts'></script>
 <style src='./login.styl' lang='stylus'></style>

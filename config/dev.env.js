@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_ROOT: '"//private-f78bc-chungeshudong.apiary-mock.com"'
+  // API_ROOT: '"//private-f78bc-chungeshudong.apiary-mock.com"'
 })

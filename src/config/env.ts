@@ -7,8 +7,15 @@ import * as process from 'process'
  * 
  */
 const protocol = 'http'
-const baseUrl = process.env.API_ROOT; 
+let baseUrl = '//private-f78bc-chungeshudong.apiary-mock.com';
 const routerMode = 'hash';
+// console.log('env: ', process.env.NODE_ENV)
+// if(process.env.NODE_ENV === 'development') {
+// 	baseUrl = '//private-f78bc-chungeshudong.apiary-mock.com'; 
+// } else {
+// 	// 生产环境服务器IP未知
+// 	baseUrl = ''
+// }
 
 export {
 	protocol,

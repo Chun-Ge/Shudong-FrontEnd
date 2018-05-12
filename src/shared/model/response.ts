@@ -1,4 +1,11 @@
 export interface Response<T> {
-    msg: string,
-    data: T
+    data: {
+        msg: string,
+        data: T
+    },
+    status: number,
+    statusText: string,
+    headers: object,
+    config: object,
+    request: object 
 }
