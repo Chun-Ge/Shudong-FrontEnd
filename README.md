@@ -19,8 +19,7 @@ npm start
 * 遇到线上 bug 的时候，从 `master / dev` 切出分支，命名为 `hotfix/****(修复的bug)`
 
 ### 组件解决方案
-* [antd](https://ant-design-vue.github.io/antv-doc/index-cn)
-* [font awesome icon](https://fontawesome.com/icons?d=gallery)
+[antd](https://ant-design-vue.github.io/antv-doc/index-cn)
 
 ## 规范
 
