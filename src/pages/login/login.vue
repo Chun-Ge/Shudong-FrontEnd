@@ -2,12 +2,14 @@
   .login-container
     .panel.panel-default
       .panel-heading
-        .text-wrapper.text-center Chun-Ge Shudong
+        .text-wrapper.text-center Chun-Ge 树洞
 
       .panel-body
         .login-info
-          v-input(type='text' v-model='username' placeholder="邮箱名")
-          v-input(type='password' v-model='password' placeholder="密码")
+          .input
+            v-input(type='text' v-model='username' size='large' placeholder="邮箱")
+          .input
+            v-input(type='password' v-model='password' size='large' placeholder="密码")
         .login-option 忘记密码？
         .login-confirm(@click='submit')
           v-button(type="primary") 登陆

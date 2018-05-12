@@ -4,12 +4,12 @@ import login from '@/pages/login/login.vue';
 
 export default  [
     {
-      path: '/',
-      redirect: '/login',
-    },
-    {
       path: '/login',
       name: 'login',
       component: login,
+    },
+    {
+      path: '/',
+    //   redirect: '/login',
     },
   ]
