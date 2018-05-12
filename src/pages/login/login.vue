@@ -12,7 +12,7 @@
             v-input(type='password' v-model='password' size='large' placeholder="密码")
         .login-option 忘记密码？
         .login-confirm(@click='submit')
-          v-button(type="primary") 登陆
+          v-button.btn(type="primary") 登陆
 
       .panel-footer
         .switch-to-register 没有账号？
