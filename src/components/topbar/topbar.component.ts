@@ -12,7 +12,7 @@ export default {
   //   this.curPageContent = this.$store.state.topbarContent;
   // }
   computed: {
-    ...mapState(['topbarText', 'hideMenu']),
+    ...mapState(['topbarText', 'hiddenMenu']),
   },
   methods: {
     ...mapMutations(['SET_TOPBARTEXT', 'TOGGLE_MENU']),

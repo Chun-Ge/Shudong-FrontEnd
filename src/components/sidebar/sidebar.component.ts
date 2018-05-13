@@ -1,4 +1,4 @@
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 import index from '../../store';
 export default {
     methods: {

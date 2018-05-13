@@ -1,11 +1,12 @@
 <template lang='pug'>
   .main
-    .header
+    .topbar-wrapper
       topbar
     v-row(type='flex' justify='space-between')
       v-col(:span='4')
-        .sidebar(v-if='!hideMenu')
-          sidebar
+        transition(name='slide-fade')
+          .sidebar-wrapper(v-if='!hiddenMenu')
+            sidebar
       v-col(:span='19')
         .content-container
           router-view

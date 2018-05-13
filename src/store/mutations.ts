@@ -17,6 +17,6 @@ export default {
         state.topbarText = content;
     },
     [TOGGLE_MENU](state) {
-        state.hideMenu = !state.hideMenu;
+        state.hiddenMenu = !state.hiddenMenu;
     }
 }

@@ -2,7 +2,7 @@
   .topbar
     .left
       .btn(@click='toggleMenu')
-        .pull-left(v-if='!hideMenu')
+        .pull-left(v-if='!hiddenMenu')
           v-icon(type='menu-fold')
         .pull-right(v-else)
           v-icon(type='menu-unfold')

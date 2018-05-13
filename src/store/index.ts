@@ -10,7 +10,7 @@ const state = {
     email: ''
   },
   topbarText: '首页',
-  hideMenu: false,
+  hiddenMenu: false,
 }
 
 export default new Vuex.Store({
