@@ -1,25 +1,4 @@
 <template lang='pug'>
-  //- .topbar
-  //-   .left
-  //-     v-row
-  //-       v-col.btn
-  //-         .pull-left(v-if='canPullLeft')
-  //-           v-icon(type='menu-fold')
-  //-         .pull-right(v-else)
-  //-           v-icon(type='menu-unfold')
-  //-       v-col.brand Chun-Ge 树洞
-  //-       v-col.current-page-content {{ curPageContent = '首页' }}
-  //-       v-col.search-box
-  //-         v-input(style="width:200px" icon="search" 
-  //-           placeholder="搜索树洞帖子"
-  //-           @onPressIcon="onPressIcon")
-  //-   .right
-  //-     .notification
-  //-       .noMsg(v-if='!hasMsg')
-  //-         v-icon(type='notification')
-  //-       .hasMsg(v-else)
-  //-         v-badge(dot)
-  //-           v-icon(type='notification')
   .topbar
     .left
       .btn
