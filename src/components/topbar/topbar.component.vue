@@ -6,10 +6,11 @@
           v-icon(type='menu-fold')
         .pull-right(v-else)
           v-icon(type='menu-unfold')
-      .text.small-remove
-        .brand Chun-Ge 树洞
-        .current-page-content {{ topbarText }}
-      v-input.search-box(style="width:200px" icon="search" size='large'
+      //- .text.small-remove
+      .brand Chun-Ge 树洞
+      .current-page-content {{ topbarText }}
+      v-input.search-box(style="width:200px" 
+        icon="search" size='large'
         placeholder="搜索树洞帖子"
         @onPressIcon="onPressIcon")
     .right

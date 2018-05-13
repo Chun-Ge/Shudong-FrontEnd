@@ -1,8 +1,18 @@
 // @import '../../common'
 
 .main
+  .sidebar-wrapper
+    // width: 200px
+    float: left
+    display inline-block
   .content-container
-    padding: 20px !important
+    display: inline-block
+    float: left
+    padding: 50px
+    @media (min-width: 0px) and (max-width: 768px)
+      padding-left: 15px
+      padding-right: 15px
+      padding-top: 15px
 .slide-fade-enter-active, .slide-fade-leave-active
   transition: all .5s;
 .slide-fade-enter, .slide-fade-leave-to

@@ -9,7 +9,7 @@ interval = 24px
   background-color: #FFFFFF
   box-shadow: 0 1px 8px rgba(0,0,0,.3)
   .left
-    width: 90%
+    width: 95%
     display: flex
     align-items: center
     .btn
@@ -18,16 +18,20 @@ interval = 24px
       margin-right: interval
       float: left
       cursor: pointer
-    .text
+    // .text
+    //   float: left
+    //   cursor: default
+    .brand
+      padding-right: interval
       float: left
-      cursor: default
-      .brand
-        padding-right: interval
-        display: inline-block
-        border-right: solid 1px #E8E8E8
-      .current-page-content
-        padding: 0 interval
-        display: inline-block
+      display: inline-block
+      border-right: solid 1px #E8E8E8
+      @media (min-width: 0px) and (max-width: 768px)
+        display: none
+    .current-page-content
+      padding: 0 interval
+      float: left
+      display: inline-block
     .search-box
       float: left
       display: inline-block
@@ -35,7 +39,7 @@ interval = 24px
       width: 70% !important
       // overflow: hidden
   .right
-    width: 10%
+    width: 5%
     float: right
     display: inline-block
     .notification
@@ -45,9 +49,9 @@ interval = 24px
       margin-right: 15px
 
 
-@media (min-width: 0px) and (max-width: 768px)
-  .small-remove
-    display: none
+// @media (min-width: 0px) and (max-width: 768px)
+//   .small-remove
+//     display: none
 
 // @media (min-width: 768px)
 //   span.ant-input-preSuffix-wrapper

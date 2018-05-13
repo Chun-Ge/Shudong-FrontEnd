@@ -2,14 +2,19 @@
   .main
     .topbar-wrapper
       topbar
-    v-row(type='flex' justify='space-between')
-      v-col(:span='4')
-        transition(name='slide-fade')
-          .sidebar-wrapper(v-if='!hiddenMenu')
-            sidebar
-      v-col(:span='19')
-        .content-container
-          router-view
+    transition(name='slide-fade')
+      .sidebar-wrapper(v-if='!hiddenMenu')
+        sidebar
+    .content-container
+      router-view
+    //- v-row(type='flex' justify='start')
+    //-   v-col(:span='5')
+    //-     transition(name='slide-fade')
+    //-       .sidebar-wrapper(v-if='!hiddenMenu')
+    //-         sidebar
+    //-   v-col(:span='19')
+    //-     .content-container
+    //-       router-view
 </template>
 
 <script src='./main.component.ts' lang='ts'></script>
