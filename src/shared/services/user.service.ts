@@ -4,29 +4,29 @@ import { UserInfo } from '../model/user'
 
 /**
  * 用户登录
- * @param username 
+ * @param email 
  * @param password 
  */
- export const login = (username: string, password: string): Promise<Response<UserInfo>> => {
+ export const login = (email: string, password: string): Promise<Response<UserInfo>> => {
      return HttpService.post('/login',{
-         username: username,
+         email: email,
          password: password 
      })
  }
 
 /**
  * 用户登出
- * @param username 
+ * @param userId 
  */
-export const logout = (username: string): Promise<Response<any>> => {
+export const logout = (userId: string): Promise<Response<any>> => {
     return HttpService.post('/logout', {
-        username: username
+        userId: userId
     })
 }
 
 /**
  * 用户注册
- * @param username 
+ * @param email 
  * @param password 
  */
 export const register = (username: string, password: string): Promise<Response<UserInfo>> => {

@@ -1,7 +1,7 @@
 // import Vue from 'vue';
 // import Router from 'vue-router';
 import login from '@/pages/login/login.vue';
-import  topbar from '@/components/topbar/topbar.component.vue' 
+import  main from '@/components/main/main.component.vue' 
 
 export default  [
     {
@@ -11,6 +11,6 @@ export default  [
     },
     {
       path: '',
-      component: topbar
+      component: main
     }, 
   ]
