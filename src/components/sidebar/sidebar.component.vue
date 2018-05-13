@@ -1,6 +1,6 @@
 <template lang='pug'>
   .sidebar.small-remove
-    v-menu(mode='inline' style='width: 240px;'
+    v-menu(mode='inline' style='width: 200px;'
       size='large'
       @onOpenChange='onOpenChange'
       @onSelect='onSelect')
@@ -13,7 +13,7 @@
           span 发现
         v-menu-item(index='2' @click='$emit("changeView","home")')
           v-icon(type='appstore')
-          span 板块
+          span 话题
         v-menu-item(index='3' @click='$emit("changeView","home")')
           v-icon(type='user')
           span 用户

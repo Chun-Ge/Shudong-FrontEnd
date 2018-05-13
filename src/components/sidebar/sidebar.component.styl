@@ -1,20 +1,28 @@
 .sidebar
-  margin-top: 30px !important
-i
-  font-size: 150%
-  margin-right: 20px !important
-  margin-left: 10px !important
-span
-  font-size: 150%
-li
-  padding-bottom: 50px  !important
-  padding-top: 10px  !important
-  // padding-left: 0px !important
-.content
-  background-color: #F1F1F1
-  border-bottom-width: 1px
-  border-bottom-style: solid;
-  border-bottom-color: #E8E8E8
-  margin-top: 15px
-.system-setting
-  background-color: #F1F1F1
+  float: left
+  // margin-top: 30px !important
+  display: inline-block
+  ul
+    li
+      padding-bottom: 50px  !important
+      padding-top: 10px  !important
+      // padding-right: 0px !important
+      i
+        font-size: 150%
+        margin-right: 20px !important
+        margin-left: 10px !important
+      span
+        font-size: 150%
+  .content
+    background-color: #F1F1F1
+    border-bottom-width: 1px
+    border-bottom-style: solid;
+    border-bottom-color: #E8E8E8
+    margin-top: 15px
+    margin-right: 0px !important
+  .system-setting
+    background-color: #F1F1F1
+
+@media (min-width: 0px) and (max-width: 768px)
+  .small-remove
+    display: none
