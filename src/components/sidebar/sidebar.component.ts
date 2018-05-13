@@ -1,10 +1,11 @@
+  import { mapMutations } from 'vuex'
+import index from '../../store';
 export default {
     methods: {
-      onOpenChange(openIndexs) {
-        console.log(openIndexs)
-      },
+      ...mapMutations(['SET_TOPBARTEXT']),
       onSelect(item, selectedIndex) {
-        console.log(item, selectedIndex)
+        const indexMap = ['首页', '发现', '话题', '用户', '设置'];
+        this.SET_TOPBARTEXT(indexMap[item]);
       }
     }
   }

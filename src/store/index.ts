@@ -9,6 +9,8 @@ const state = {
   userInfo: {
     email: ''
   },
+  topbarText: '首页',
+  hideMenu: false,
 }
 
 export default new Vuex.Store({

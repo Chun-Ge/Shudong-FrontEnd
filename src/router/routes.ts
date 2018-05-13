@@ -4,7 +4,8 @@ import login from '@/pages/login/login.vue';
 import home from '@/pages/home/home.vue'
 import main from '@/components/main/main.component.vue' 
 import discover from '@/pages/discover/discover.vue'
-import plate from '@/pages/plate/plate.vue'
+import topic from '@/pages/topic/topic.vue'
+import App from '@/App.vue'
 
 const children = [
   {
@@ -18,9 +19,9 @@ const children = [
     component: discover
   }, 
   {
-    path: '/plate',
-    name: 'plate'
-    // component: plate
+    path: '/topic',
+    name: 'topic'
+    // component: topic
   },
   {
     path: 'profile',
@@ -40,7 +41,7 @@ export default  [
     },
     {
       path: '/',
-      name: 'main',
+      name: 'app',
       component: main,
       children
 
