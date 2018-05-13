@@ -1,5 +1,5 @@
 <template lang='pug'>
-  .sidebar
+  .sidebar.small-remove
     v-menu(mode='inline' style='width: 240px;'
       size='large'
       @onOpenChange='onOpenChange'
