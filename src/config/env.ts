@@ -7,7 +7,7 @@
  * 
  */
 declare var process: any;
-const protocol = 'http'
+const protocol = 'https'
 let baseUrl = '';
 const routerMode = 'hash';
 

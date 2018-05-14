@@ -7,7 +7,8 @@ Vue.use(Vuex);
 
 const state = {
   userInfo: {
-    email: ''
+    username: '',
+    userId: ''
   },
   topbarText: '首页',
   hiddenMenu: false,

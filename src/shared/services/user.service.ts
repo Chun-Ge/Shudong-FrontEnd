@@ -4,12 +4,12 @@ import { UserInfo } from '../model/user'
 
 /**
  * 用户登录
- * @param email 
+ * @param username 
  * @param password 
  */
- export const login = (email: string, password: string): Promise<Response<UserInfo>> => {
+ export const login = (username: string, password: string): Promise<Response<UserInfo>> => {
      return HttpService.post('/login',{
-         email: email,
+         username: username,
          password: password 
      })
  }
@@ -26,11 +26,11 @@ export const logout = (userId: string): Promise<Response<any>> => {
 
 /**
  * 用户注册
- * @param email 
+ * @param username 
  * @param password 
  */
 export const register = (username: string, password: string): Promise<Response<UserInfo>> => {
-    return HttpService.post(`/users/${username}`, {
+    return HttpService.post('/users', {
         username: username,
         password: password
     })
@@ -38,28 +38,29 @@ export const register = (username: string, password: string): Promise<Response<U
 
 /**
  * 获取用户信息
- * @param username 
+ * @param userId 
  */
-export const getUserInfo = (username: string): Promise<Response<UserInfo>> => {
-    return HttpService.get('/users/' + username);
+export const retrieveUserInfo = (userId: string): Promise<Response<UserInfo>> => {
+    return HttpService.get(`/users/${userId}`);
 }
 
 /**
  * 修改用户信息
  * @param oldUsername
- * @param info 
+ * @param userInfo 
  */
-export const modifyUserInfo = (oldUsername: string, info: UserInfo): Promise<Response<UserInfo>> => {
-    return HttpService.patch(`/users/${oldUsername}`, info);
+export const modifyUserInfo = (userId: string, userInfo: UserInfo): Promise<Response<UserInfo>> => {
+    return HttpService.patch(`/users/${userId}`, userInfo);
 }
 
 /**
  * 注销用户
- * @param username 
+ * @param userId 
+ * @param username
  * @param password 
  */
-export const deleteUser = (username: string, password: string): Promise<Response<any>> => {
-    return HttpService.delete(`/users/${username}`, {
+export const deleteUser = (userId: string, username: string,password: string): Promise<Response<any>> => {
+    return HttpService.delete(`/users/${userId}`, {
         data: {
             username: username,
             password: password

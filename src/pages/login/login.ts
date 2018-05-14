@@ -4,7 +4,7 @@ import { login } from "../../shared/services/user.service";
 export default {
     data: () => {
         return {
-            email: '',
+            username: '',
             password: ''
         }
     },
@@ -22,22 +22,29 @@ export default {
         },
 
         submit() {
-            // console.log(this.password)
-            this.$store.dispatch('getUserInfo', this.email)
-            console.log('state: ', this.$store.state.userInfo);
-            if (this.email !== '' && this.password !== '') {
-                const emailRegExp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-                if (this.email.match(emailRegExp) === null) {
+            if (this.username !== '' && this.password !== '') {
+                const usernameRegExp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+                if (this.username.match(usernameRegExp) === null) {
                     this.openNotificationWithIcon('error',
                         '输入错误',
                         '邮箱格式不正确'
                     )
+                    return;
                 }
 
-                login(this.email, this.password).then(res => {
+                if(this.username.match(/^([a-zA-Z0-9_-])+@mail\d?\.sysu\.edu\.cn/) === null) {
+                    this.openNotificationWithIcon('error',
+                        '邮箱错误',
+                        '目前只支持中大邮箱登陆'
+                    )
+                    return;
+                }
+
+                login(this.username, this.password).then(res => {
+                    this.getUserInfo(res.data.data.userId);
+                    this.$router.push('/')
                     this.openNotificationWithIcon('success', '登陆成功', `欢迎回来`);
-                    // this.$store.dispatch('getUserInfo', this.username)
-                    // console.log('state: ', this.$store.state.userInfo);
+                    
                 }).catch(err => {
                     this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
                 })

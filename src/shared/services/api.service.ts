@@ -38,11 +38,10 @@ function toJsonType(options: object) {
 
 export const HttpService = {
     get(url: string, options?: HttpOptions): Promise<any> {
-        return axios.get(url, options);
+        return axios.get(api(url), options);
     },
 
     post(url: string, data: object, options?: HttpOptions): Promise<any> {
-        console.log(api(url));
         return axios.post(api(url), data, toJsonType(options));
     },
 

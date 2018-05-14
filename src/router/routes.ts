@@ -15,6 +15,10 @@ const children = [
     component: home
   },
   {
+    path: '/home',
+    redirect: '/'
+  },
+  {
     path: '/discover',
     name: 'discover',
     component: discover
