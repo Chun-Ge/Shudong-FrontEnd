@@ -1,13 +1,13 @@
 <template lang='pug'>
 .app
-  main
+  mainComponent
 </template>
 
 <script lang='ts'>
-import main from '@/components/main/main.component.vue';
+import mainComponent from '@/components/main/main.component.vue';
 
 export default {
-  components: { main },
+  components: { mainComponent },
 };
 </script>
 

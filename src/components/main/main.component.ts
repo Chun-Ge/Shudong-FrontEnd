@@ -1,10 +1,10 @@
-import sidebar from '@/components/sidebar/sidebar.component.vue';
-import topbar from '@/components/topbar/topbar.component.vue';
+import sidebarComponent from '@/components/sidebar/sidebar.component.vue';
+import topbarComponent from '@/components/topbar/topbar.component.vue';
 import { mapState } from 'vuex';
 
 declare var hiddenMenu;
 export default {
-  components: { sidebar, topbar },
+  components: { sidebarComponent, topbarComponent },
   computed: {
     ...mapState(['hiddenMenu']),
   }

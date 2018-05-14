@@ -1,10 +1,10 @@
 <template lang='pug'>
   .main
     .topbar-wrapper
-      topbar
+      topbarComponent
     transition(name='slide-fade')
       .sidebar-wrapper(v-if='!hiddenMenu')
-        sidebar
+        sidebarComponent
     .content-container
       router-view
     //- v-row(type='flex' justify='start')

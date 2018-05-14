@@ -1,5 +1,7 @@
 import { mapActions } from "vuex";
 import { login } from "../../shared/services/user.service";
+// import _ from 'lodash';
+
 
 export default {
     data: () => {
@@ -51,7 +53,6 @@ export default {
             } else {
                 this.openNotificationWithIcon('error', '错误', `用户名或者密码不能为空`);
             }
-             
         }
     }
 }

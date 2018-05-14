@@ -3,7 +3,7 @@
 import login from '@/pages/login/login.vue';
 import register from '@/pages/register/register.vue';
 import home from '@/pages/home/home.vue'
-import main from '@/components/main/main.component.vue' 
+// import main from '@/components/main/main.component.vue' 
 import discover from '@/pages/discover/discover.vue'
 import topic from '@/pages/topic/topic.vue'
 import App from '@/App.vue'
@@ -54,7 +54,7 @@ export default  [
     {
       path: '/',
       name: 'app',
-      component: main,
+      component: App,
       children,
       meta: { auth: true }
     }
