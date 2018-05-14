@@ -43,18 +43,20 @@ export default  [
       path: '/login',
       name: 'login',
       component: login,
+      meta: { auth: false }
     },
     {
       path: '/register',
       name: 'register',
       component: register,
+      meta: { auth: false }
     },
     {
       path: '/',
       name: 'app',
       component: main,
-      children
-
+      children,
+      meta: { auth: true }
     }
     // {
     //   path: '',

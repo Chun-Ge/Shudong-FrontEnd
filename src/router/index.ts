@@ -2,10 +2,11 @@ import Vue from 'vue';
 import { routerMode } from '../config/env'
 import Router from 'vue-router'
 import routes from './routes'
+import store from '../store'
 
 Vue.use(Router);
 
-export const router =  new Router({
+const router =  new Router({
   routes,
   mode: routerMode,
   scrollBehavior (to, from, savedPosition) {
@@ -21,3 +22,19 @@ export const router =  new Router({
     }
   }
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+      if(!store.state.userInfo.userId) {
+          next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+          });
+          return;
+      }
+      
+  }
+  next();
+})
+
+export default router;
