@@ -9,7 +9,7 @@
       //- .text.small-remove
       .brand Chun-Ge 树洞
       .current-page-content {{ topbarText }}
-      v-input.search-box(style="width:200px" 
+      v-input.search-box(style="width: 200px"
         icon="search" size='large'
         placeholder="搜索树洞帖子"
         @onPressIcon="onPressIcon")

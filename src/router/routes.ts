@@ -1,6 +1,7 @@
 // import Vue from 'vue';
 // import Router from 'vue-router';
 import login from '@/pages/login/login.vue';
+import register from '@/pages/register/register.vue';
 import home from '@/pages/home/home.vue'
 import main from '@/components/main/main.component.vue' 
 import discover from '@/pages/discover/discover.vue'
@@ -38,6 +39,11 @@ export default  [
       path: '/login',
       name: 'login',
       component: login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register,
     },
     {
       path: '/',

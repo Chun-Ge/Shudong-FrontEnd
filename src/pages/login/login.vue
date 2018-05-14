@@ -16,8 +16,8 @@
 
       .panel-footer
         .switch-to-register 没有账号？
-          span 注册
+          router-link(:to='"register"') 注册
 </template>
 
 <script src='./login.ts' lang='ts'></script>
-<style src='./login.styl' lang='stylus'></style>
+<style src='./login.styl' lang='stylus' scoped></style>
