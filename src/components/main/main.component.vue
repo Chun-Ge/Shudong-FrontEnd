@@ -18,4 +18,4 @@
 </template>
 
 <script src='./main.component.ts' lang='ts'></script>
-<style src='./main.component.styl' lang='stylus'></style>
+<style src='./main.component.styl' lang='stylus' scoped></style>
