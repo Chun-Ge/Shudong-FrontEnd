@@ -25,7 +25,7 @@ const router =  new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-      if(!store.state.userInfo.userId) {
+      if(!store.getters.isAuthenticated) {
           next({
             path: '/login',
             query: { redirect: to.fullPath }

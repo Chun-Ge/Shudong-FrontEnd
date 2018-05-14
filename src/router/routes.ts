@@ -3,10 +3,10 @@
 import login from '@/pages/login/login.vue';
 import register from '@/pages/register/register.vue';
 import home from '@/pages/home/home.vue'
-// import main from '@/components/main/main.component.vue' 
 import discover from '@/pages/discover/discover.vue'
 import topic from '@/pages/topic/topic.vue'
 import App from '@/App.vue'
+import store from '../store'
 
 const children = [
   {
@@ -53,14 +53,8 @@ export default  [
     },
     {
       path: '/',
-      name: 'app',
       component: App,
+      meta: { auth: true },
       children,
-      meta: { auth: true }
     }
-    // {
-    //   path: '',
-    //   name: '404'
-    //   component: notFound
-    // }, 
   ]

@@ -25,5 +25,6 @@ export default {
         keys.forEach((curVal: string) => {
             state[curVal] = undefined;
         })
+        state.topbarText = '首页';
     }
 }
