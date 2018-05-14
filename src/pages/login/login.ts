@@ -44,7 +44,7 @@ export default {
             }
             // 开发阶段免去邮箱格式限制
             const usernameRegExp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-            const prod = !!(process.env.NODE_ENV === 'development');
+            const prod = !(process.env.NODE_ENV === 'development');
             if(prod && this.username.match(usernameRegExp) === null) {
                 return err[1];
             }

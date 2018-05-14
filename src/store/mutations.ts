@@ -21,10 +21,15 @@ export default {
         state.hiddenMenu = !state.hiddenMenu;
     },
     [CLEARDATA](state) {
-        let keys = Object.keys(state);
-        keys.forEach((curVal: string) => {
-            state[curVal] = undefined;
-        })
+        // let keys = Object.keys(state);
+        // keys.forEach((curVal: string) => {
+        //     state[curVal] = undefined;
+        // })
+        state.hiddenMenu = false;
         state.topbarText = '首页';
+        state.userInfo = {
+            userId: '',
+            username: ''
+        }
     }
 }

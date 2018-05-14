@@ -21,14 +21,17 @@ export default {
       })
     },
 
-    onConfirm(e) {
-      logout(this.userInfo.userId).then(() => {
+    async onConfirm(e) {
+      try {
+        await logout(this.userInfo.userId);
         this.CLEARDATA();
         this.$router.push('/login');
-        this.openNotificationWithIcon('success', '登出成功')
-      }).catch(() => {
+        this.openNotificationWithIcon('success', '登出成功');
+      } catch(err) {
+        // console.log(err)
         this.openNotificationWithIcon('error', '登出失败');
-      })    
+      }
+      
     }
   }
 }
