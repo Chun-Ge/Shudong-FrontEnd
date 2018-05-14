@@ -1,6 +1,7 @@
 import { mapActions } from "vuex";
 import { login } from "../../shared/services/user.service";
-// import _ from 'lodash';
+import { declareClass } from "babel-types";
+import _ from 'lodash';
 
 declare var process;
 const err = [
@@ -55,22 +56,22 @@ export default {
             
         },
 
-        async submit() {
-                let res = this.validate(this.username, this.password);
-                if(res) {
-                    this.openNotificationWithIcon('error', res.title, res.description);
-                    return;
-                }
-                try {
-                    let res = await login(this.username, this.password);
-                    await this.getUserInfo(res.data.data.userId);
-                    this.$router.push('/')
-                    this.openNotificationWithIcon('success', '登陆成功', `欢迎回来`);
+        submit: _.debounce(async function() {
+            let res = this.validate(this.username, this.password);
+            if(res) {
+                this.openNotificationWithIcon('error', res.title, res.description);
+                return;
+            }
+            try {
+                let res = await login(this.username, this.password);
+                await this.getUserInfo(res.data.data.userId);
+                this.$router.push('/')
+                this.openNotificationWithIcon('success', '登陆成功', `欢迎回来`);
 
-                } catch(error) {
-                    this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
+            } catch(error) {
+                this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
 
-                }
-        }
+            }
+        }, 2000)
     }
 }
