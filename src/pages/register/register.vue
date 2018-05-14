@@ -10,7 +10,7 @@
         .register-info
           .input
             v-input(type='text' v-model='username' size='large' placeholder="邮箱")
-          .input
+          .input(@keyup.enter='submit')
             v-input(type='password' v-model='password' size='large' placeholder="密码")
         .register-statement 注册即代表同意《Chun-Ge协议》《隐私政策》
         .register-confirm(@click='submit')
