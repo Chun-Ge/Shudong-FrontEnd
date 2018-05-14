@@ -9,7 +9,7 @@ interval = 24px
   background-color: #FFFFFF
   box-shadow: 0 1px 8px rgba(0,0,0,.3)
   .left
-    width: 95%
+    width: 85%
     display: flex
     align-items: center
     .btn
@@ -39,14 +39,31 @@ interval = 24px
       width: 70% !important
       // overflow: hidden
   .right
-    width: 5%
+    width: 15%
     float: right
     display: inline-block
     .notification
       float: right
       cursor: pointer
+      @media (min-width: 0px) and (max-width: 768px)
+        display: none
       // display: inline-block
+      margin-right: interval
+    .logout
       margin-right: 15px
+      display: inline-block
+      float: right
+      position: relative
+      top: -4px
+.ant-popover
+  width: 10%
+  .ant-popover-buttons
+    @media (min-width: 768px)
+      display: flex !important
+      justify-content: space-between !important
+      flex-wrap: wrap !important
+
+
 
 
 // @media (min-width: 0px) and (max-width: 768px)

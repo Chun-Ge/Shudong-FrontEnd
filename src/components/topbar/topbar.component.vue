@@ -9,18 +9,22 @@
       //- .text.small-remove
       .brand Chun-Ge 树洞
       .current-page-content {{ topbarText }}
-      v-input.search-box(style="width: 200px"
-        icon="search" size='large'
-        placeholder="搜索树洞帖子"
-        @onPressIcon="onPressIcon")
+      v-input.search-box(style='width: 200px'
+        icon='search' size='large'
+        placeholder='搜索树洞帖子'
+        @onPressIcon='onPressIcon')
     .right
+      .logout
+        v-popconfirm(placement='bottomRight' :title='text'
+          @onConfirm='onConfirm'
+          @onCancel='')
+          v-button 登出
       .notification
         .noMsg(v-if='!hasMsg')
           v-icon(type='notification')
         .hasMsg(v-else)
           v-badge(dot)
             v-icon(type='notification')
-
 </template>
 
 <script src='./topbar.component.ts' lang='ts'></script>

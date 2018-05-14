@@ -44,7 +44,7 @@ export default {
                     this.getUserInfo(res.data.data.userId);
                     this.$router.push('/')
                     this.openNotificationWithIcon('success', '登陆成功', `欢迎回来`);
-                    
+
                 }).catch(err => {
                     this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
                 })

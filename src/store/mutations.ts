@@ -2,6 +2,7 @@ import {
     SET_USERINFO,
     SET_TOPBARTEXT,
     TOGGLE_MENU,
+    CLEARDATA,
 
 } from './mutation-types'
 import { UserInfo } from '../shared/model/user';
@@ -18,5 +19,11 @@ export default {
     },
     [TOGGLE_MENU](state) {
         state.hiddenMenu = !state.hiddenMenu;
+    },
+    [CLEARDATA](state) {
+        let keys = Object.keys(state);
+        keys.forEach((curVal: string) => {
+            state[curVal] = undefined;
+        })
     }
 }
