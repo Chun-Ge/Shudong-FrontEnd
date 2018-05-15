@@ -113,7 +113,7 @@ xxx.pug
 
 ### 辅助类
 
-可以在 `src/common.styl` 看到辅助的类的配置
+可以在 `src/common.styl` 看到辅助的类的配置(引用需要import)
 
 * margin和padding的效果，主要有:
 
@@ -153,7 +153,10 @@ Shudong 主站主要做两种类型的响应式。
 @media (min-width: 768px)
   // your stylus code
 ```
-> 具体实现策略------AntD的[Grid系统](https://ant.design/components/grid-cn/#components-grid-demo-playground)
+> 具体实现策略
+* 媒体查询
+* AntD的[Grid系统](https://ant.design/components/grid-cn/#components-grid-demo-playground)
+
 
 ## 建议
 - 使用chrome上的Vue Devtools
