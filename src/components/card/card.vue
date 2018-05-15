@@ -30,26 +30,34 @@
         img(:src='imageLink')
     .card-footer
       .others-comments
-        a.more(href='javascript:;' @click='showMoreComments = !showMoreComments') 显示/关闭更多评论
+        a.more(href='javascript:;' @click='showMoreComments = !showMoreComments')
+          | 显示/关闭更多评论
         .preview(v-if='!showMoreComments')
           .comment(v-for='{comment, id} in comments.slice(0,3)')
-            span {{ id + ':    '}}
+            span.username {{ id + ':&ensp;'}}
             span {{ comment }}
         .total-comments(v-else)
-          .comment(v-for='{comment, id} in comments')
-            span {{ id + ':    '}}
-            span {{ comment }}
+          .comment(v-for='piece in comments')
+            .username-wrapper
+              span.username {{ piece.id + '&ensp;'}}
+              span(v-if='piece.likeNum && piece.likeNum !== 0') {{ '+' + piece.likeNum }}
+            .comment-content {{ piece.comment }}
+            .interactive
+              a.reply(href='javascript:;') 回复
+              a.star(href='javascript:;') +1
       .draft-editor
         .before-input
           .input
             v-input(placeholder="发表评论")
           .star
-            v-icon(type='like')
-            | {{ '+' + likeNum }}
+            v-button(type='default' icon='like')
+              span {{ likeNum }}
+            //- .icon
+            //-   v-icon(type='like')
           .share
         .inputing
           .input
-          .to-do
+          //- .to-do
             span 取消
             span 发布
 </template>

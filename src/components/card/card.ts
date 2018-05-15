@@ -8,7 +8,7 @@ export default {
       imageLink: '../../../static/images/default_avatar.png',
       showMoreComments: false,
       comments:[
-        {id: 'liangtjsky@163.com', comment: '這不好吧'},
+        {id: 'liangtjsky@163.com', comment: '這不好吧', likeNum: 3},
         {id: 'binly42@gmail.com', comment: '媽的，快看一人之下啊，我丟'},
         {id: 'jackylrd@163.com', comment: '對不起！！！'},
         {id: 'lqh@outlook.com', comment: '對不起！！！'},
