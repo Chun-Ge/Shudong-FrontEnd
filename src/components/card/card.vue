@@ -1,6 +1,6 @@
 <template lang='pug'>
 .card-container
-  v-card(:title='cardTitle' :bordered='false' style='width: 400px')
+  v-card(:title='title' :bordered='false' style='width: 400px')
     .card-header(slot='extra')
       .concrete
       .setting
@@ -10,11 +10,11 @@
             v-icon(type='down')
           v-dropdown-menu(slot='menu')
             v-dropdown-item(index='0')
-              a.follow 关注帖子
+              a.follow(@click='onFollow') 关注帖子
             v-dropdown-item(index='1')
-              a.ignore 忽略帖子
+              a.ignore(@click='onIgnore') 忽略帖子
             v-dropdown-item(index='2')
-              a.report 举报滥用行为
+              a.report(@click='onReport') 举报滥用行为
     .card-content
       .text
         .total-text(v-if='text.length <= 52') {{ text }}
@@ -29,8 +29,8 @@
       .img(v-if='imageLink')
         img(:src='imageLink')
     .card-footer
-      .others-comments
-        a.more(href='javascript:;' @click='showMoreComments = !showMoreComments')
+      .others-comments(v-if='comments.length !== 0')
+        a.more(@click='showMoreComments = !showMoreComments')
           | 显示/关闭更多评论
         .preview(v-if='!showMoreComments')
           .comment(v-for='{comment, id} in comments.slice(0,3)')
@@ -40,16 +40,17 @@
           .comment(v-for='piece in comments')
             .username-wrapper
               span.username {{ piece.id + '&ensp;'}}
-              span(v-if='piece.likeNum && piece.likeNum !== 0') {{ '+' + piece.likeNum }}
+              span(v-if='piece.likeNum && piece.likeNum !== 0')
+                | {{ '+' + piece.likeNum }}
             .comment-content {{ piece.comment }}
             .interactive
-              a.reply 回复
-              a.star +1
+              a.reply(@click='onReply') 回复
+              a.star(@click='onStarToComment') +1
       .draft-editor
         .before-input(v-if='!inputting')
           .input
             v-input(placeholder="发表评论" @input='inputting = true')
-          .star
+          .star(@click='onStarToPost')
             v-button(type='default' icon='like')
               span {{ likeNum }}
           .share
@@ -58,7 +59,7 @@
             v-input(placeholder="发表评论" v-model='inputComment')
           .to-do
             a.option.cancel(@click='inputting = false') 取消
-            a.option.confirm 发布
+            a.option.confirm(@click='onComment') 发布
 </template>
 
 <script src='./card.ts' lang='ts'></script>
