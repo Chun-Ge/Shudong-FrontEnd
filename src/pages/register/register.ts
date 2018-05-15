@@ -68,7 +68,7 @@ export default {
                 this.openNotificationWithIcon('error', '注册失败', `请重新注册`);
 
             }
-        }, 2000)
+        }, 1000)
         
     }
 }

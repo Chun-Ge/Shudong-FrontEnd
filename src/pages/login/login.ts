@@ -72,6 +72,6 @@ export default {
                 this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
 
             }
-        }, 2000)
+        }, 1000)
     }
 }
