@@ -8,7 +8,7 @@ import { Post, SpecificPost, Like, Share } from '../model/post'
  * @param offset 
  */
 export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<Post[]>> => {
-  return HttpService.get(`/posts?limit=${limitNum}&offset=${offset}`);
+  return HttpService.get(`/posts?limitNum=${limitNum}&offset=${offset}`);
 }
 
 /**
@@ -19,17 +19,17 @@ export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<R
  */
 export const createPost = (username: string, title: string, content: string): Promise<Response<Post>> => {
   return HttpService.post('/posts', {
-    username: username,
+    username,
     post: {
-      title: title,
-      content: content
+      title,
+      content
     }
   });
 }
 
 /**
- * 
- * @param postId 獲取特定的帖子
+ * 獲取帖子
+ * @param postId 
  */
 export const retrieveSpecificPost = (postId: string): Promise<Response<Post>> => {
   return HttpService.get(`/posts/${postId}`);
@@ -44,7 +44,7 @@ export const DeletePost = (postId: string): Promise<Response<any>> => {
 }
 
 /**
- * 點贊帖子
+ * 點贊或取消點贊帖子
  * @param postId 
  */
 export const toggleLikePost = (postId: string): Promise<Response<Like>> => {
@@ -58,7 +58,7 @@ export const toggleLikePost = (postId: string): Promise<Response<Like>> => {
  */
 export const repostPost = (postId: string, reason: string): Promise<Response<any>> => {
   return HttpService.post(`/posts/${postId}/report`, {
-    reason: reason,
+    reason
   });
 }
 
@@ -67,7 +67,7 @@ export const repostPost = (postId: string, reason: string): Promise<Response<any
  * @param postId 
  */
 export const toggleStarPost = (postId: string): Promise<Response<any>> => {
-  return HttpService.get(`\posts\${postId}\star`);
+  return HttpService.get(`/posts/${postId}/star`);
 }
 
 /**
@@ -75,5 +75,5 @@ export const toggleStarPost = (postId: string): Promise<Response<any>> => {
  * @param postId 
  */
 export const sharePost = (postId: string): Promise<Response<Share>> => {
-  return HttpService.get(`\posts\${postId}\share`);
+  return HttpService.get(`/posts/${postId}/share`);
 }
