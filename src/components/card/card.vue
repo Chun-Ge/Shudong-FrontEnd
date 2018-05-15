@@ -43,23 +43,22 @@
               span(v-if='piece.likeNum && piece.likeNum !== 0') {{ '+' + piece.likeNum }}
             .comment-content {{ piece.comment }}
             .interactive
-              a.reply(href='javascript:;') 回复
-              a.star(href='javascript:;') +1
+              a.reply 回复
+              a.star +1
       .draft-editor
-        .before-input
+        .before-input(v-if='!inputting')
           .input
-            v-input(placeholder="发表评论")
+            v-input(placeholder="发表评论" @input='inputting = true')
           .star
             v-button(type='default' icon='like')
               span {{ likeNum }}
-            //- .icon
-            //-   v-icon(type='like')
           .share
-        .inputing
+        .inputting(v-else)
           .input
-          //- .to-do
-            span 取消
-            span 发布
+            v-input(placeholder="发表评论" v-model='inputComment')
+          .to-do
+            a.option.cancel(@click='inputting = false') 取消
+            a.option.confirm 发布
 </template>
 
 <script src='./card.ts' lang='ts'></script>

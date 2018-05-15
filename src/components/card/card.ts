@@ -14,6 +14,8 @@ export default {
         {id: 'lqh@outlook.com', comment: '對不起！！！'},
       ],
       likeNum: 15,
+      inputComment: '',
+      inputting: false
     }
   }
 }
