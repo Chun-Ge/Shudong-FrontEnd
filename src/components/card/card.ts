@@ -36,7 +36,7 @@ export default {
 
   },
   methods: {
-    onFollow() {
+    onStar() {
 
     },
     onIgnore() {
@@ -45,13 +45,13 @@ export default {
     onReport() {
 
     },
-    onStarToPost() {
+    toggleLikePost() {
 
     },
     onReply() {
 
     },
-    onStarToComment() {
+    toggleLikeComment() {
 
     },
     onComment() {

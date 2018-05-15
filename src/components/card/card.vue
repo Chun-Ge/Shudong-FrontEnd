@@ -10,7 +10,7 @@
             v-icon(type='down')
           v-dropdown-menu(slot='menu')
             v-dropdown-item(index='0')
-              a.follow(@click='onFollow') 关注帖子
+              a.follow(@click='onStar') 关注帖子
             v-dropdown-item(index='1')
               a.ignore(@click='onIgnore') 忽略帖子
             v-dropdown-item(index='2')
@@ -45,12 +45,12 @@
             .comment-content {{ piece.comment }}
             .interactive
               a.reply(@click='onReply') 回复
-              a.star(@click='onStarToComment') +1
+              a.like(@click='toggleLikeComment') +1
       .draft-editor
         .before-input(v-if='!inputting')
           .input
             v-input(placeholder="发表评论" @input='inputting = true')
-          .star(@click='onStarToPost')
+          .like(@click='toggleLikePost')
             v-button(type='default' icon='like')
               span {{ likeNum }}
           .share
