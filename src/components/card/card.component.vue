@@ -71,6 +71,6 @@
     v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
 </template>
 
-<script src='./card.ts' lang='ts'></script>
-<style src='./card.styl' lang='stylus'></style>
+<script src='./card.component.ts' lang='ts'></script>
+<style src='./card.component.styl' lang='stylus'></style>
 

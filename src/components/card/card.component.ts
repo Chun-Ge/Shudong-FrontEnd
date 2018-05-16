@@ -17,6 +17,7 @@ interface ReportInfo {
 
 declare var postId;
 export default {
+  name: 'card',
   props: {
     postId: String,
     author: String,
@@ -100,7 +101,6 @@ export default {
         message: title,
         description: descrip,
       })
-      
     },
     async onStar() {
       try {
