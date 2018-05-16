@@ -54,11 +54,12 @@
           .before-input(v-if='!inputting')
             .input
               v-input(placeholder="发表评论" @input='inputting = true')
+            .share(@click='onShare')
+              v-button(type='default' icon='share-alt' shape='circle')
             .like(@click='toggleLikePost')
-              div(@click='toggleButtonType')
-                v-button(:type='buttonType' icon='like')
+              div(@click='toggleLikeButtonType')
+                v-button(:type='likeButtonType' icon='like')
                   span {{ likeCountPost }}
-            .share
           .inputting(v-else)
             .input
               v-input(placeholder="发表评论" v-model='inputComment')

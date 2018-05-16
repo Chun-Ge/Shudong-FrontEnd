@@ -1,10 +1,13 @@
-import { retrieveComments,
+import { 
+  retrieveComments,
   toggleLikeComment,
   commentToPost,
   ReportComment } from '../../shared/services/comment.service'
-import { toggleLikePost,
+import { 
+  toggleLikePost,
   toggleStarPost,
-  reportPost } from '../../shared/services/post.service'
+  reportPost,
+  sharePost } from '../../shared/services/post.service'
 
 interface ReportInfo {
   type: string,
@@ -30,7 +33,7 @@ export default {
         id: ''
       },
       modalVisible: false,
-      buttonType: 'default',
+      likeButtonType: 'default',
       loading: true,
       reportReason: '',
       currentUserLikePost: false,
@@ -69,12 +72,12 @@ export default {
 
   // },
   methods: {
-    toggleButtonType() {
+    toggleLikeButtonType() {
       console.log('this.buttonType');
-      if(this.buttonType === 'default') {
-        this.buttonType = 'primary';
+      if(this.likeButtonType === 'default') {
+        this.likeButtonType = 'primary';
       } else {
-        this.buttonType = 'default';
+        this.likeButtonType = 'default';
       }
     },
     async init() {
@@ -88,7 +91,7 @@ export default {
         this.comments = res.data.data.comments;
       } catch(err) {
         console.log(err)
-        this.openNotificationWithIcon('error','獲取评论失敗');
+        this.openNotificationWithIcon('error','獲取评论失败');
       }
     },
     openNotificationWithIcon(type: string, title: string, descrip: string) {
@@ -103,7 +106,7 @@ export default {
         await toggleStarPost(this.postId)
         this.openNotificationWithIcon('success', '关注成功')
       } catch(e) {
-        this.openNotificationWithIcon('error', '关注失敗')
+        this.openNotificationWithIcon('error', '关注失败')
       }
     },
     onIgnore() {
@@ -114,7 +117,7 @@ export default {
         await reportPost(this.postId, this.reason);
         this.openNotificationWithIcon('success', '举报成功，請等待');
       } catch(e) {
-        this.openNotificationWithIcon('error', '举报失敗');
+        this.openNotificationWithIcon('error', '举报失败');
       } finally {
         this.reportInfo.type='';
         this.reportInfo.reason='';
@@ -131,7 +134,7 @@ export default {
           this.openNotificationWithIcon('success', '已取消点赞');
         }
       } catch(e) {
-        this.openNotificationWithIcon('error', '操作失敗');
+        this.openNotificationWithIcon('error', '操作失败');
       }
     },
     async reportToComment(commentId: string, reason: string = 'no reason') {
@@ -139,7 +142,7 @@ export default {
         await ReportComment(this.postId, commentId,reason);
         this.openNotificationWithIcon('success', '举报成功');
       } catch(e) {
-        this.openNotificationWithIcon('error', '举报失敗');
+        this.openNotificationWithIcon('error', '举报失败');
       } finally {
         this.reportInfo.type='';
         this.reportInfo.reason='';
@@ -154,7 +157,7 @@ export default {
           this.openNotificationWithIcon('success', '已取消点赞');
         }
       } catch(e) {
-        this.openNotificationWithIcon('error', '操作失敗');
+        this.openNotificationWithIcon('error', '操作失败');
       }
     },
     async onComment() {
@@ -162,10 +165,18 @@ export default {
         let res = await commentToPost(this.postId, this.inputComment);
         this.openNotificationWithIcon('success','评论成功');
       } catch(e) {
-        this.openNotificationWithIcon('error','评论失敗');
+        this.openNotificationWithIcon('error','评论失败');
       } finally {
         this.getComments();
         this.inputting = false;
+      }
+    },
+    async onShare() {
+      try {
+        await sharePost(this.postId);
+        this.openNotificationWithIcon('success', '分享成功')
+      } catch(e) {
+        this.openNotificationWithIcon('error', '分享失败')
       }
     },
     async onOk(type: string) {
