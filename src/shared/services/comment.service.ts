@@ -47,6 +47,8 @@ export const toggleLikeComment = (postId: string, commentId: string): Promise<Re
  * @param postId 
  * @param commentId 
  */
-export const ReportComment = (postId: string, commentId: string): Promise<Response<any>> => {
-  return HttpService.get(`/posts/${postId}/comments/${commentId}/report`);
+export const ReportComment = (postId: string, commentId: string, reason: string): Promise<Response<any>> => {
+  return HttpService.post(`/posts/${postId}/comments/${commentId}/report`, {
+    reason
+  });
 }

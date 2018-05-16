@@ -14,14 +14,14 @@
             v-dropdown-item(index='1')
               a.ignore(@click='onIgnore') 忽略帖子
             v-dropdown-item(index='2')
-              a.report(@click='onReport') 举报滥用行为
+              a.report(@click='onReportToPost') 举报滥用行为
     .card-content
       .text
-        .total-text(v-if='text.length <= 52') {{ content }}
+        .total-text(v-if='content.length <= 52') {{ content }}
         .trim-text(v-else)
           .not-read-more(v-if='!readMore')
             .trim-text-content {{ content.slice(0, 52)}}
-            a.more(href='javascript:;' @click='readMore = true') 阅读全文
+            a.more(@click='readMore = true') 阅读全文
           .read-more(v-else)
             .total-text {{ content }}
             a.more-text( @click='readMore = false') 收起
@@ -31,21 +31,21 @@
     .card-footer
       .others-comments(v-if='comments.length !== 0')
         a.more(@click='showMoreComments = !showMoreComments')
-          | {{ '显示/关闭更多评论　(共' + comments.length　＋　'條'' }}
+          | {{ '显示/关闭更多评论&ensp;(共' + comments.length + '條)' }}
         .preview(v-if='!showMoreComments')
-          .comment(v-for='comment in comments.slice(0,3)')
+          .comment(v-for='comment in comments.slice(0,3 > comments.length ? comments.length : 3 )')
             span.username {{ comment.author + ':&ensp;'}}
             span {{ comment.content }}
         .total-comments(v-else)
           .comment(v-for='comment in comments')
             .username-wrapper
               span.username {{ comment.author + '&ensp;'}}
-              span(v-if='comment['like_count'] && comment['like_count'] !== 0')
-                | {{ '+' + comment['like_count'] }}
+              span(v-if='comment["like_count"] && comment["like_count"] !== 0')
+                | {{ '+' + comment["like_count"] }}
             .comment-content {{ comment.content }}
             .interactive
-              a.reply(@click='onReply') 回覆
               a.like(@click='toggleLikeComment(comment.commentId)') +1
+              a.report(@click='onReportToComment(comment.commentId)') 举报
       .draft-editor
         .before-input(v-if='!inputting')
           .input
