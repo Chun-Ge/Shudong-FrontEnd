@@ -56,7 +56,7 @@ export const toggleLikePost = (postId: string): Promise<Response<Like>> => {
  * @param postId 
  * @param reason 
  */
-export const repostPost = (postId: string, reason: string): Promise<Response<any>> => {
+export const reportPost = (postId: string, reason: string): Promise<Response<any>> => {
   return HttpService.post(`/posts/${postId}/report`, {
     reason
   });

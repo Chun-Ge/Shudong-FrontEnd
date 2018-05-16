@@ -17,42 +17,42 @@
               a.report(@click='onReport') 举报滥用行为
     .card-content
       .text
-        .total-text(v-if='text.length <= 52') {{ text }}
+        .total-text(v-if='text.length <= 52') {{ content }}
         .trim-text(v-else)
           .not-read-more(v-if='!readMore')
-            .trim-text-content {{ text.slice(0, 52)}}
+            .trim-text-content {{ content.slice(0, 52)}}
             a.more(href='javascript:;' @click='readMore = true') 阅读全文
           .read-more(v-else)
-            .total-text {{ text }}
-            a.more-text(href='javascript:;' @click='readMore = false') 收起
+            .total-text {{ content }}
+            a.more-text( @click='readMore = false') 收起
 
-      .img(v-if='imageLink')
+      //- .img(v-if='imageLink')
         img(:src='imageLink')
     .card-footer
       .others-comments(v-if='comments.length !== 0')
         a.more(@click='showMoreComments = !showMoreComments')
-          | 显示/关闭更多评论
+          | {{ '显示/关闭更多评论　(共' + comments.length　＋　'條'' }}
         .preview(v-if='!showMoreComments')
-          .comment(v-for='{comment, id} in comments.slice(0,3)')
-            span.username {{ id + ':&ensp;'}}
-            span {{ comment }}
+          .comment(v-for='comment in comments.slice(0,3)')
+            span.username {{ comment.author + ':&ensp;'}}
+            span {{ comment.content }}
         .total-comments(v-else)
-          .comment(v-for='piece in comments')
+          .comment(v-for='comment in comments')
             .username-wrapper
-              span.username {{ piece.id + '&ensp;'}}
-              span(v-if='piece.likeNum && piece.likeNum !== 0')
-                | {{ '+' + piece.likeNum }}
-            .comment-content {{ piece.comment }}
+              span.username {{ comment.author + '&ensp;'}}
+              span(v-if='comment['like_count'] && comment['like_count'] !== 0')
+                | {{ '+' + comment['like_count'] }}
+            .comment-content {{ comment.content }}
             .interactive
-              a.reply(@click='onReply') 回复
-              a.like(@click='toggleLikeComment') +1
+              a.reply(@click='onReply') 回覆
+              a.like(@click='toggleLikeComment(comment.commentId)') +1
       .draft-editor
         .before-input(v-if='!inputting')
           .input
             v-input(placeholder="发表评论" @input='inputting = true')
           .like(@click='toggleLikePost')
             v-button(type='default' icon='like')
-              span {{ likeNum }}
+              span {{ likeCountPost }}
           .share
         .inputting(v-else)
           .input

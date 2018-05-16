@@ -1,3 +1,11 @@
+import { retrieveComments,
+  toggleLikeComment,
+  commentToPost } from '../../shared/services/comment.service'
+import { toggleLikePost,
+  toggleStarPost,
+  reportPost } from '../../shared/services/post.service'
+
+declare var postId;
 export default {
   data: () => {
     return {
@@ -10,52 +18,99 @@ export default {
         // {id: 'jackylrd@163.com', comment: '對不起！！！'},
         // {id: 'lqh@outlook.com', comment: '對不起！！！'},
       // ],
-      imageLink: '../../../static/images/default_avatar.png',
-
+      reportReason: '',
+      currentUserLikePost: false,
+      conments:[],
       readMore: false,
       showMoreComments: false,
       inputComment: '',
       inputting: false
     }
   },
+  created: () => {
+    this.getComments();
+  },
+
   props: {
+    postId: String,
+    author: String,
     title: {
       type: String,
       default: '杂谈'
     },
-    text: {
+    content: {
       type: String,
       required: true
     },
-    comments: {
-      type: Array,
-      default: []
-    },
-    image: String,
-    likeNum: Number,
+    likeCountPost: Number,
+    commentCount: Number
 
   },
   methods: {
-    onStar() {
-
+    async getComments() {
+      try {
+        let res = await retrieveComments(postId);
+        this.comments = res.data.data.comments;
+      } catch(err) {
+        this.openNotificationWithIcon('error','獲取評論失敗');
+      }
+    },
+    openNotificationWithIcon(type: string, title: string, descrip: string) {
+      this.$notification[type]({
+        message: title,
+        description: descrip,
+      })
+      
+    },
+    async onStar() {
+      try {
+        await toggleStarPost(postId)
+        this.openNotificationWithIcon('error', '關注成功')
+      } catch(e) {
+        this.openNotificationWithIcon('error', '關注失敗')
+      }
     },
     onIgnore() {
 
     },
-    onReport() {
-
+    async onReport() {
+      try {
+        await reportPost(this.postId, this.reason);
+        this.openNotificationWithIcon('error', '舉報成功，請等待');
+      } catch(e) {
+        this.openNotificationWithIcon('error', '舉報失敗');
+      }
     },
-    toggleLikePost() {
-
+    async toggleLikePost() {
+      try {
+        let res = await toggleLikePost(this.postId);
+        this.currentUserLikePost = res.data.data.currentUserLike;
+        this.likeCountPost = res.data.data.currentLikeCount;
+        this.openNotificationWithIcon('error', '點贊／取贊成功');
+      } catch(e) {
+        this.openNotificationWithIcon('error', '點贊／取贊失敗');
+      }
     },
     onReply() {
 
     },
-    toggleLikeComment() {
-
+    async toggleLikeComment(commentId: string) {
+      try {
+        let res = await toggleLikeComment(this.postId, commentId);
+        this.openNotificationWithIcon('error', '點贊／取贊成功');
+      } catch(e) {
+        this.openNotificationWithIcon('error', '點贊／取贊失敗');
+      }
     },
-    onComment() {
-
+    async onComment() {
+      try {
+        let res = await commentToPost(this.postId, this.inputComment);
+        this.openNotificationWithIcon('評論成功');
+      } catch(e) {
+        this.openNotificationWithIcon('評論失敗');
+      } finally {
+        this.getComments();
+      }
     },
   }
 }
