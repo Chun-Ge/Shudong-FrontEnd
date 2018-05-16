@@ -17,7 +17,7 @@
               v-dropdown-item(index='1')
                 a.ignore(@click='onIgnore') 忽略帖子
               v-dropdown-item(index='2')
-                a.report(@click='onReportToPost') 举报滥用行为
+                a.report(@click='showModalReportPost') 举报滥用行为
       .card-content
         .text
           .total-text(v-if='content.length <= 52') {{ content }}
@@ -34,7 +34,8 @@
       .card-footer
         .others-comments(v-if='comments.length !== 0')
           a.more(@click='showMoreComments = !showMoreComments')
-            | {{ '显示/关闭更多评论&ensp;(共' + comments.length + '條)' }}
+            span(v-if='!showMoreComments') 更多
+            span {{ '评论&ensp;(共' + comments.length + '条)' }}
           .preview(v-if='!showMoreComments')
             .comment(v-for='comment in previewComment')
               span.username {{ comment.author + ':&ensp;'}}
@@ -48,14 +49,15 @@
               .comment-content {{ comment.content }}
               .interactive
                 a.like(@click='toggleLikeComment(comment.commentId)') +1
-                a.report(@click='onReportToComment(comment.commentId)') 举报
+                a.report(@click='showModalReportComment(comment.commentId)') 举报
         .draft-editor
           .before-input(v-if='!inputting')
             .input
               v-input(placeholder="发表评论" @input='inputting = true')
             .like(@click='toggleLikePost')
-              v-button(type='default' icon='like')
-                span {{ likeCountPost }}
+              div(@click='toggleButtonType')
+                v-button(:type='buttonType' icon='like')
+                  span {{ likeCountPost }}
             .share
           .inputting(v-else)
             .input
@@ -63,8 +65,11 @@
             .to-do
               a.option.cancel(@click='inputting = false') 取消
               a.option.confirm(@click='onComment') 发布
+  v-modal(v-model='modalVisible' title='举报'
+    @onOk='onOk' @onCancel='onCancel')
+    v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
 </template>
 
 <script src='./card.ts' lang='ts'></script>
-<style src='./card.styl' lang='stylus' scoped></style>
+<style src='./card.styl' lang='stylus'></style>
 
