@@ -48,6 +48,10 @@ export default {
       });
       this.offset += this.limitNum;
     }
+  },
+
+  async pullDownRefresh() {
+
   }
   
 }
