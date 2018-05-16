@@ -8,6 +8,9 @@
           :content='p.summary'
           :likeCountPost='p.likeCount'
           :commentCount='p.commentCount')
+    .loading(v-if='loading')
+      | 加载更多...
+
 </template>
 <script src='./home.ts' lang="ts"></script>
 <style src='./home.styl' lang="stylus" scoped></style>
