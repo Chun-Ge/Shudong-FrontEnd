@@ -16,10 +16,6 @@ const children = [
     component: home
   },
   {
-    path:'card',
-    component: card
-  },
-  {
     path: '/home',
     redirect: '/'
   },
@@ -31,7 +27,6 @@ const children = [
   {
     path: '/topic',
     name: 'topic'
-    // component: topic
   },
   {
     path: 'profile',
