@@ -5,10 +5,11 @@ export interface Post {
     summary: string,
     likeCount: number,
     commentCount: number
+    content?: string
 }
 
-export interface SpecificPost extends Post {
-    content: string
+export interface SpecificPost {
+    post: Post
 }
 
 export interface Like {

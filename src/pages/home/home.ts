@@ -35,25 +35,18 @@ export default {
       const simplePosts = response.data.data;
 
       simplePosts.forEach(async (curVal, index) => {
-        // console.log(this.posts)
         try{
           const res = await retrieveSpecificPost(String(curVal.postId));
-          this.posts.push(res.data.data)
+          this.posts.push(res.data.data.post)
+          this.posts.push(res.data.data.post)
+          this.posts.push(res.data.data.post)
+          this.posts.push(res.data.data.post)
+          this.posts.push(res.data.data.post)
         } catch(e) {
           this.openNotificationWithIcon('error', '获取posts数据失败');
         }
       });
-
-
-      // console.log('simplePosts: ', simplePosts)
-      // this.posts = simplePosts.map(async (curValue, index) => {
-      //   const res = await retrieveSpecificPost(String(curValue.postId));
-        // console.log(res)
-        // console.log("res: ",res.data.data)
-        // return res.data.data;
-      // });
       this.offset += this.limitNum;
-      // console.log(this.posts)
     }
   }
   

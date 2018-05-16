@@ -31,7 +31,7 @@ export const createPost = (username: string, title: string, content: string): Pr
  * 獲取帖子
  * @param postId 
  */
-export const retrieveSpecificPost = (postId: string): Promise<Response<Post>> => {
+export const retrieveSpecificPost = (postId: string): Promise<Response<SpecificPost>> => {
   return HttpService.get(`/posts/${postId}`);
 }
 
