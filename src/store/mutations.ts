@@ -31,5 +31,6 @@ export default {
             userId: '',
             username: ''
         }
-    }
+        state.PULL_LEFT = false;
+    },
 }

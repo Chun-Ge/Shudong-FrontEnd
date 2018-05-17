@@ -5,7 +5,7 @@
     .sidebar-wrapper
       transition(name='slide-fade')
         sidebarComponent(v-if='!hiddenMenu')
-    .content-container
+    .content-container(:class='{"ml-200": !hiddenMenu}')
       router-view
     //- v-row(type='flex' justify='start')
     //-   v-col(:span='5')

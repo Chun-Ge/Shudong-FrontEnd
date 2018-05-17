@@ -13,6 +13,7 @@ const state = {
   },
   topbarText: '首页',
   hiddenMenu: false,
+  pullLeft: false,
 }
 
 export default new Vuex.Store({
