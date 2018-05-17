@@ -12,7 +12,7 @@ export default {
     ...mapState(['topbarText', 'hiddenMenu']),
   },
   methods: {
-    ...mapMutations(['SET_TOPBARTEXT', 'TOGGLE_MENU']),
+    ...mapMutations(['SET_TOPBARTEXT', 'TOGGLE_MENU', 'PULL_LEFT']),
     onPressIcon(value) {
       console.log(value)
     },
