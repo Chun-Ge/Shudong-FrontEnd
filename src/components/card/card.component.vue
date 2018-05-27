@@ -1,9 +1,9 @@
 <template lang='pug'>
 .card-container
   .loading(v-if='loading')
-    v-card(style="max-width: 500px; min-width: 300px" :title="totalTitle" loading)
+    v-card(style="width: 100%" :title="totalTitle" loading)
   .loaded(v-else)
-    v-card(:title='totalTitle' :bordered='false' style='max-width: 500px; min-width: 300px')
+    v-card(:title='totalTitle' :bordered='false' style='width: 100%')
       .card-header(slot='extra')
         .concrete
         .setting
@@ -54,12 +54,12 @@
           .before-input(v-if='!inputting')
             .input
               v-input(placeholder="发表评论" @input='inputting = true')
-            .share(@click='onShare')
-              v-button(type='default' icon='share-alt' shape='circle')
             .like(@click='toggleLikePost')
               div(@click='toggleLikeButtonType')
                 v-button(:type='likeButtonType' icon='like')
                   span {{ likeCountPost }}
+            .share(@click='onShare')
+              v-button(type='default' icon='share-alt' shape='circle')
           .inputting(v-else)
             .input
               v-input(placeholder="发表评论" v-model='inputComment')

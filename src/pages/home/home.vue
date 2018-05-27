@@ -1,13 +1,14 @@
 <template lang="pug">
   .home
     .posts-container
-      .post-wrapper(v-for='p in posts')
-        post-card(:postId='String(p.postId)'
-          :author='p.author'
-          :title='p.title'
-          :content='p.summary'
-          :likeCountPost='p.likeCount'
-          :commentCount='p.commentCount')
+      .flow(v-for='postSet in postGroups')
+        .post-wrapper(v-for='p in postSet')
+          post-card(:postId='String(p.postId)'
+            :author='p.author'
+            :title='p.title'
+            :content='p.summary'
+            :likeCountPost='p.likeCount'
+            :commentCount='p.commentCount')
     .loading(v-if='loading')
       | 加载更多...
 

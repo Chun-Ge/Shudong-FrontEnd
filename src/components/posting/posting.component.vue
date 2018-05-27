@@ -24,10 +24,12 @@
             v-dropdown-item(index='2')
               a.report(@click='') ...index.2
       .post-title
-        v-input(v-model.trim='postTitle' type='textarea' :autosize='{minRows: 1, maxRows: 2}' placeholder='标题 (可选)')
+        v-input(v-model.trim='postTitle' type='textarea'
+          :autosize='{minRows: 1, maxRows: 2}' placeholder='标题 (可选)')
       hr
       .post-body
-        v-input(v-model='postContent' type='textarea' :autosize='{minRows: 3}' placeholder='你最近有什么新鲜事要分享吗?')
+        v-input(v-model='postContent' type='textarea'
+          :autosize='{minRows: 3}' placeholder='你最近有什么新鲜事要分享吗?')
       .post-attachment
         v-button(type='default' icon='camera' shape='circle' size='large')
         v-button(type='default' icon='link' shape='circle' size='large')

@@ -1,7 +1,6 @@
 import { mapActions } from "vuex";
 import { login } from "../../shared/services/user.service";
 import { declareClass } from "babel-types";
-import _ from 'lodash';
 
 declare var process;
 const err = [
@@ -23,7 +22,8 @@ export default {
     data: () => {
         return {
             username: '',
-            password: ''
+            password: '',
+            loading: false,
         }
     },
     methods: {
@@ -56,7 +56,8 @@ export default {
             
         },
 
-        submit: _.debounce(async function() {
+        async submit() {
+            this.loading = true;
             let res = this.validate(this.username, this.password);
             if(res) {
                 this.openNotificationWithIcon('error', res.title, res.description);
@@ -71,7 +72,9 @@ export default {
             } catch(error) {
                 this.openNotificationWithIcon('error', '登陆失败', `请重新登陆`);
 
+            } finally {
+                this.loading = false;
             }
-        }, 1000)
+        }
     }
 }

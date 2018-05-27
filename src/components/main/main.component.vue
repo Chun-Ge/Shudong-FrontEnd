@@ -7,7 +7,7 @@
         sidebarComponent(v-if='!hiddenMenu')
     .posting-wrapper
       postingComponent
-    .content-container(:class='{"ml-200": !hiddenMenu}')
+    .content-container(:class='{"ml-220": !hiddenMenu}')
       router-view
     //- v-row(type='flex' justify='start')
     //-   v-col(:span='5')
