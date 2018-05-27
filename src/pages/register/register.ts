@@ -1,6 +1,5 @@
 import { mapActions } from "vuex";
 import { register } from "../../shared/services/user.service";
-import _ from 'lodash';
 
 const err = [
     {
@@ -21,7 +20,8 @@ export default {
     data: () => {
         return {
             username: '',
-            password: ''
+            password: '',
+            loading: false,
         }
     },
     methods: {
@@ -52,7 +52,8 @@ export default {
             
         },
 
-        submit: _.debounce(async function() {
+        async submit() {
+            this.loading = true;
             let res = this.validate(this.username, this.password);
             if(res) {
                 this.openNotificationWithIcon('error', res.title, res.description);
@@ -67,8 +68,10 @@ export default {
             } catch(error) {
                 this.openNotificationWithIcon('error', '注册失败', `请重新注册`);
 
+            } finally {
+                this.loading = false;
             }
-        }, 1000)
+        }
         
     }
 }

@@ -106,6 +106,9 @@ export default {
         try{
           const res = await retrieveSpecificPost(String(curVal.postId));
           this.posts.push(res.data.data.post);
+          // this.posts.push(res.data.data.post);
+          // this.posts.push(res.data.data.post);
+          // this.posts.push(res.data.data.post);
         } catch(e) {
           this.openNotificationWithIcon('error', '获取posts数据失败');
         }
