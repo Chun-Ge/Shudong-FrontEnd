@@ -168,6 +168,7 @@ export default {
       } catch(e) {
         this.openNotificationWithIcon('error','评论失败');
       } finally {
+        this.inputComment='';
         this.getComments();
         this.inputting = false;
       }
