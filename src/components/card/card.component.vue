@@ -61,7 +61,7 @@
             .share(@click='onShare')
               v-button(type='default' icon='share-alt' shape='circle')
           .inputting(v-else)
-            .input
+            .input(@keyup.enter='onComment')
               v-input(placeholder="发表评论" v-model='inputComment')
             .to-do
               a.option.cancel(@click='inputting = false') 取消
