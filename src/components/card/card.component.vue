@@ -11,7 +11,7 @@
             a.ant-dropdown-link(href='javascript:;' slot='title')
               | 更多
               v-icon(type='down')
-            v-dropdown-menu(slot='menu')
+            v-dropdown-menu(slot='menu' v-if='!modalVisible')
               v-dropdown-item(index='0')
                 a.follow(@click='onStar') 关注帖子
               v-dropdown-item(index='1')
