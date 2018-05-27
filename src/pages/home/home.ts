@@ -56,15 +56,24 @@ export default {
     // console.log('init: ', this)
     await this.init()
   },
+  computed: {
+    postGroups: function() {
+      let arr = [[], [], []];
+      this.posts.forEach((curVal, index) => {
+        arr[index % 3].push(curVal);
+      })
+      return arr;
+    }
+  },
 
   methods: {
     async init() {
       await this.getPosts();
       window.onscroll =  async () => {
         //监听事件内容
-        console.log('document: ', getDocumentTop());
-        console.log('window: ', getWindowHeight());
-        console.log('Scroll: ', getScrollHeight());
+        // console.log('document: ', getDocumentTop());
+        // console.log('window: ', getWindowHeight());
+        // console.log('Scroll: ', getScrollHeight());
         if(getDocumentTop() + getWindowHeight() ===  getScrollHeight() && !this.noMoreData){
             //当滚动条到底时,这里是触发内容
             //异步请求数据,局部刷新dom
@@ -96,7 +105,7 @@ export default {
       simplePosts.forEach(async (curVal, index) => {
         try{
           const res = await retrieveSpecificPost(String(curVal.postId));
-          this.posts.push(res.data.data.post)
+          this.posts.push(res.data.data.post);
         } catch(e) {
           this.openNotificationWithIcon('error', '获取posts数据失败');
         }

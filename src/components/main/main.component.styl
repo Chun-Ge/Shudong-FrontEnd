@@ -41,5 +41,8 @@
 .slide-fade-enter, .slide-fade-leave-to
   transform: translateX(-200px);
   opacity: 0
-.ml-200
-  margin-left: 200px
+.ml-220
+  @media (min-width: 768px)
+    margin-left: 220px
+  @media (min-width: 0px) and (max-width: 768px)
+    margin-left: 0px

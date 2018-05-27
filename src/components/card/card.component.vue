@@ -1,9 +1,9 @@
 <template lang='pug'>
 .card-container
   .loading(v-if='loading')
-    v-card(style="max-width: 500px; min-width: 300px" :title="totalTitle" loading)
+    v-card(style="width: 100%" :title="totalTitle" loading)
   .loaded(v-else)
-    v-card(:title='totalTitle' :bordered='false' style='max-width: 500px; min-width: 300px')
+    v-card(:title='totalTitle' :bordered='false' style='width: 100%')
       .card-header(slot='extra')
         .concrete
         .setting
