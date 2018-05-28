@@ -5,6 +5,7 @@ import register from '@/pages/register/register.vue';
 import home from '@/pages/home/home.vue';
 import discover from '@/pages/discover/discover.vue';
 import topic from '@/pages/topic/topic.vue';
+import profile from '@/pages/profile/profile.vue';
 import App from '@/App.vue';
 import store from '../store';
 import card from '@/components/card/card.vue';
