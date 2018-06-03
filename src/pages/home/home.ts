@@ -96,23 +96,32 @@ export default {
         description: descrip,
       })  
     },
-
+    deletePost(postId: string) {
+      // console.log("postId: ", postId);
+      this.posts = this.posts.filter((curVal, index) => {
+        return curVal.postId.toString() !== postId
+      })
+    },
     async getPosts() {
-      const response = await retrieveRecentPosts(this.limitNum, this.offset);
-      // this.posts = response.data.data;
-      const simplePosts = response.data.data;
+      try {
+        const response = await retrieveRecentPosts(this.limitNum, this.offset);
+        this.posts = response.data.data.posts;
+      } catch(e) {
+        this.openNotificationWithIcon('error', '获取posts数据失败');
+      }
+      // const simplePosts = response.data.data;
 
-      simplePosts.forEach(async (curVal, index) => {
-        try{
-          const res = await retrieveSpecificPost(String(curVal.postId));
-          this.posts.push(res.data.data.post);
-          // this.posts.push(res.data.data.post);
-          // this.posts.push(res.data.data.post);
-          // this.posts.push(res.data.data.post);
-        } catch(e) {
-          this.openNotificationWithIcon('error', '获取posts数据失败');
-        }
-      });
+      // simplePosts.forEach(async (curVal, index) => {
+      //   try{
+      //     const res = await retrieveSpecificPost(String(curVal.postId));
+      //     this.posts.push(res.data.data.post);
+      //     // this.posts.push(res.data.data.post);
+      //     // this.posts.push(res.data.data.post);
+      //     // this.posts.push(res.data.data.post);
+      //   } catch(e) {
+      //     this.openNotificationWithIcon('error', '获取posts数据失败');
+      //   }
+      // });
       this.offset += this.limitNum;
     }
   },

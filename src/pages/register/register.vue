@@ -9,7 +9,7 @@
       .panel-body
         .register-info
           .input
-            v-input(type='text' v-model='username' size='large' placeholder="邮箱")
+            v-input(type='text' v-model='email' size='large' placeholder="邮箱")
           .input(@keyup.enter='submit')
             v-input(type='password' v-model='password' size='large' placeholder="密码")
         .register-statement 注册即代表同意《Chun-Ge协议》《隐私政策》
