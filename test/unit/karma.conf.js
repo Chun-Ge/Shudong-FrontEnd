@@ -4,7 +4,7 @@
 //   https://github.com/webpack/karma-webpack
 
 const webpackConfig = require('../../build/webpack.test.conf');
-
+require('phantomjs-prebuilt').path = './node_modules/.bin/phantomjs';
 module.exports = function karmaConfig(config) {
   config.set({
     // to run in additional browsers:

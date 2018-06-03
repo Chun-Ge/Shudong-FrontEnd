@@ -4,12 +4,12 @@ import { UserInfo } from '../model/user'
 
 /**
  * 用户登录
- * @param username 
+ * @param email 
  * @param password 
  */
- export const login = (username: string, password: string): Promise<Response<UserInfo>> => {
+ export const login = (email: string, password: string): Promise<Response<{userId: number}>> => {
      return HttpService.post('/login',{
-         username: username,
+         email: email,
          password: password 
      })
  }
@@ -26,12 +26,12 @@ export const logout = (userId: string): Promise<Response<any>> => {
 
 /**
  * 用户注册
- * @param username 
+ * @param email 
  * @param password 
  */
-export const register = (username: string, password: string): Promise<Response<UserInfo>> => {
+export const register = (email: string, password: string): Promise<Response<{userId: number}>> => {
     return HttpService.post('/users', {
-        username: username,
+        email: email,
         password: password
     })
 }
@@ -46,7 +46,7 @@ export const retrieveUserInfo = (userId: string): Promise<Response<UserInfo>> =>
 
 /**
  * 修改用户信息
- * @param oldUsername
+ * @param userId
  * @param userInfo 
  */
 export const modifyUserInfo = (userId: string, userInfo: UserInfo): Promise<Response<UserInfo>> => {
@@ -56,13 +56,13 @@ export const modifyUserInfo = (userId: string, userInfo: UserInfo): Promise<Resp
 /**
  * 注销用户
  * @param userId 
- * @param username
+ * @param email
  * @param password 
  */
-export const deleteUser = (userId: string, username: string,password: string): Promise<Response<any>> => {
+export const deleteUser = (userId: string, email: string,password: string): Promise<Response<any>> => {
     return HttpService.delete(`/users/${userId}`, {
         data: {
-            username: username,
+            email: email,
             password: password
         },
     })
