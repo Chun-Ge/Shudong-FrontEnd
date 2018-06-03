@@ -5,12 +5,10 @@ import Vue from 'vue';
 import App from './App.vue';
 import router  from './router';
 import store from './store'
-import VueLodash from 'vue-lodash'
 import Antv from 'antv'
 import 'antv/dist/antv.css'
 
 Vue.use(Antv);
-Vue.use(VueLodash)
 
 Vue.config.productionTip = false;
 // Vue.prototype.$axios = axios;
