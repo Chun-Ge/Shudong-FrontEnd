@@ -5,7 +5,7 @@ export interface Response<T> {
     },
     status: number,
     statusText: string,
-    headers: object,
-    config: object,
-    request: object 
+    headers: any,
+    config: any,
+    request: any
 }
