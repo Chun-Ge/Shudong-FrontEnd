@@ -1,5 +1,5 @@
 export default {
   isAuthenticated: (state) => {
-    return !!state.userInfo.userId
+    return !!state.jwtAuth;
   }
 }

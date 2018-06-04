@@ -33,7 +33,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.pug','.styl','.ts','.js', '.vue', '.json'],
+    extensions: ['.pug','.styl','.js','.ts', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -61,22 +61,13 @@ module.exports = {
         }
       },
       {
+        test: /\.d\.ts$/,
+        loader: 'ignore-loader'
+       },
+      {
         test: /\.styl$/,
         loader: 'style-loader!css-loader!stylus-loader'
       },
-      // {
-      //   test: /\.styl$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     {
-      //       loader: 'stylus-loader',
-      //       options: {
-      //         use: [stylus_plugin()],
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',

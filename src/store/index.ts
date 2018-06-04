@@ -8,9 +8,9 @@ Vue.use(Vuex);
 
 const state = {
   userInfo: {
-    username: '',
-    userId: ''
+    user: {}
   },
+  jwtAuth: '',
   topbarText: '首页',
   hiddenMenu: false,
   pullLeft: false,
