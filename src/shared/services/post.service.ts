@@ -7,19 +7,19 @@ import { Post, SpecificPost, Like, Share } from '../model/post'
  * @param limitNum 
  * @param offset 
  */
-export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<Post[]>> => {
+export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<{posts: Post[]}>> => {
   return HttpService.get(`/posts?limitNum=${limitNum}&offset=${offset}`);
 }
 
 /**
  * 創建帖子
- * @param username 
+ * @param email 
  * @param title 
  * @param content 
  */
-export const createPost = (username: string, title: string, content: string): Promise<Response<Post>> => {
+export const createPost = (email: string, title: string, content: string): Promise<Response<{post: Post}>> => {
   return HttpService.post('/posts', {
-    username,
+    email,
     post: {
       title,
       content
@@ -39,7 +39,7 @@ export const retrieveSpecificPost = (postId: string): Promise<Response<SpecificP
  * 刪除帖子
  * @param postId 
  */
-export const DeletePost = (postId: string): Promise<Response<any>> => {
+export const deletePost = (postId: string): Promise<Response<any>> => {
   return HttpService.delete(`/posts/${postId}`);
 }
 

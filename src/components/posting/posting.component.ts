@@ -29,7 +29,7 @@ export default {
 
     async onOk() {
       try {
-        await createPost(this.userInfo.username, this.postTitle, this.postContent);
+        await createPost(this.userInfo.email, this.postTitle, this.postContent);
         this.CLEARDATA();
         this.openNotificationWithIcon('success', 'post 成功');
       } catch(err) {

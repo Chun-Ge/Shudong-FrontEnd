@@ -1,6 +1,6 @@
-import { mapActions } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 import { login } from "../../shared/services/user.service";
-import { declareClass } from "babel-types";
+// import { declareClass } from "babel-types";
 
 declare var process;
 const err = [
@@ -21,12 +21,15 @@ const err = [
 export default {
     data: () => {
         return {
-            username: '',
+            email: '',
             password: '',
             loading: false,
         }
     },
     methods: {
+        ...mapMutations([
+            'SET_JWTAUTH'
+        ]),
         ...mapActions([
             'getUserInfo'
         ]),
@@ -39,17 +42,17 @@ export default {
             
         },
 
-        validate(username: string, password: string) {
-            if(this.username === '' || this.password === '') {
+        validate(email: string, password: string) {
+            if(this.email === '' || this.password === '') {
                 return err[0];
             }
             // 开发阶段免去邮箱格式限制
-            const usernameRegExp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-            const prod = !(process.env.NODE_ENV === 'development');
-            if(prod && this.username.match(usernameRegExp) === null) {
+            const emailRegExp = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+            // const prod = !(process.env.NODE_ENV === 'development');
+            if(this.email.match(emailRegExp) === null) {
                 return err[1];
             }
-            if(prod && this.username.match(/^([a-zA-Z0-9_-])+@mail\d?\.sysu\.edu\.cn/) === null) {
+            if(this.email.match(/^([a-zA-Z0-9_-])+@mail\d?\.sysu\.edu\.cn/) === null) {
                 return err[2];
             }
             return null;
@@ -58,13 +61,14 @@ export default {
 
         async submit() {
             this.loading = true;
-            let res = this.validate(this.username, this.password);
+            let res = this.validate(this.email, this.password);
             if(res) {
                 this.openNotificationWithIcon('error', res.title, res.description);
                 return;
             }
             try {
-                let res = await login(this.username, this.password);
+                let res = await login(this.email, this.password);
+                this.SET_JWTAUTH(res.headers.authorization);
                 await this.getUserInfo(res.data.data.userId);
                 this.$router.push('/')
                 this.openNotificationWithIcon('success', '登陆成功', `欢迎回来`);

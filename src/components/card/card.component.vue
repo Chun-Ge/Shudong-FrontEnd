@@ -13,10 +13,12 @@
               v-icon(type='down')
             v-dropdown-menu(slot='menu' v-if='!modalVisible')
               v-dropdown-item(index='0')
-                a.follow(@click='onStar') 关注帖子
+                a.deletePost(@click='onDeletePost') 删除帖子
               v-dropdown-item(index='1')
-                a.ignore(@click='onIgnore') 忽略帖子
+                a.follow(@click='onStar') 关注帖子
               v-dropdown-item(index='2')
+                a.ignore(@click='onIgnore') 忽略帖子
+              v-dropdown-item(index='3')
                 a.report(@click='showModalReportPost') 举报滥用行为
       .card-content
         .text
@@ -38,12 +40,12 @@
             span {{ '评论&ensp;(共' + comments.length + '条)' }}
           .preview(v-if='!showMoreComments')
             .comment(v-for='comment in previewComment')
-              span.username {{ comment.author + ':&ensp;'}}
+              span.email {{ comment.author + ':&ensp;'}}
               span {{ comment.content }}
           .total-comments(v-else)
             .comment(v-for='comment in comments')
-              .username-wrapper
-                span.username {{ comment.author + '&ensp;'}}
+              .email-wrapper
+                span.email {{ comment.author + '&ensp;'}}
                 span(v-if='comment["like_count"] && comment["like_count"] !== 0')
                   | {{ '+' + comment["like_count"] }}
               .comment-content {{ comment.content }}
@@ -68,7 +70,8 @@
               a.option.confirm(@click='onComment') 发布
   v-modal(v-model='modalVisible' title='举报'
     @onOk='onOk' @onCancel='onCancel')
-    v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
+    .input(@keyup.enter='onOk')
+      v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
 </template>
 
 <script src='./card.component.ts' lang='ts'></script>

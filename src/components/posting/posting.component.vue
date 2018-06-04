@@ -11,7 +11,7 @@
         v-icon(type='caret-right') &nbps; |
         v-select(v-model.trim='currentTopic' placeholder='选择版块')
           .item(v-for='topic in topics')
-            option.username {{ topic.name }}
+            option.email {{ topic.name }}
       .more-menu
         v-dropdown(placement='bottomRight' trigger='click')
           a.ant-dropdown-link(href='javascript:;' slot='title' title='更多')

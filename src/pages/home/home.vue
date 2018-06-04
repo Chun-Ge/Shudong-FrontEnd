@@ -6,9 +6,10 @@
           post-card(:postId='String(p.postId)'
             :author='p.author'
             :title='p.title'
-            :content='p.summary'
+            :content='p.content'
             :likeCountPost='p.likeCount'
-            :commentCount='p.commentCount')
+            :commentCount='p.commentCount'
+            @deletePost='deletePost($event)')
     .loading(v-if='loading')
       | 加载更多...
 
