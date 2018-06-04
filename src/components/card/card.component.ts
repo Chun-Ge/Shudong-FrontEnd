@@ -1,14 +1,17 @@
-import { 
+import {
   retrieveComments,
   toggleLikeComment,
   commentToPost,
-  ReportComment } from '../../shared/services/comment.service'
-import { 
+  ReportComment,
+  deleteComment,
+} from '../../shared/services/comment.service'
+import {
   toggleLikePost,
   toggleStarPost,
   reportPost,
   sharePost,
-  deletePost } from '../../shared/services/post.service'
+  deletePost,
+} from '../../shared/services/post.service'
 
 interface ReportInfo {
   type: string,
@@ -33,7 +36,7 @@ export default {
     likeCountPost: Number,
     commentCount: Number
   },
-  
+
   data: () => {
     return {
       reportInfo: {
@@ -56,21 +59,21 @@ export default {
 
   computed: {
     previewComment() {
-      return this.comments.slice(0,3 > this.comments.length ? this.comments.length : 3 )
+      return this.comments.slice(0, 3 > this.comments.length ? this.comments.length : 3)
     },
     totalTitle() {
-      return this.author + ' > ' + this.title;  
+      return this.author + ' > ' + this.title;
     }
   },
 
-  async beforeMount()  {
+  async beforeMount() {
     await this.init();
   },
 
   methods: {
     toggleLikeButtonType() {
       console.log('this.buttonType');
-      if(this.likeButtonType === 'default') {
+      if (this.likeButtonType === 'default') {
         this.likeButtonType = 'primary';
       } else {
         this.likeButtonType = 'default';
@@ -84,9 +87,9 @@ export default {
       try {
         let res = await retrieveComments(this.postId);
         this.comments = res.data.data.comments;
-      } catch(err) {
+      } catch (err) {
         console.log(err)
-        this.openNotificationWithIcon('error','獲取评论失败');
+        this.openNotificationWithIcon('error', '獲取评论失败');
       }
     },
     openNotificationWithIcon(type: string, title: string, descrip: string) {
@@ -101,7 +104,7 @@ export default {
         this.openNotificationWithIcon('success', '删帖成功');
         // console.log(this)
         this.$emit('deletePost', this.postId);
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '删帖失败');
       }
     },
@@ -109,7 +112,7 @@ export default {
       try {
         await toggleStarPost(this.postId)
         this.openNotificationWithIcon('success', '关注成功');
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '关注失败')
       }
     },
@@ -120,11 +123,11 @@ export default {
       try {
         await reportPost(this.postId, this.reason);
         this.openNotificationWithIcon('success', '举报成功，請等待');
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '举报失败');
       } finally {
-        this.reportInfo.type='';
-        this.reportInfo.reason='';
+        this.reportInfo.type = '';
+        this.reportInfo.reason = '';
       }
     },
     async toggleLikePost() {
@@ -132,46 +135,59 @@ export default {
         let res = await toggleLikePost(this.postId);
         this.currentUserLikePost = res.data.data.currentUserLike;
         this.likeCountPost = res.data.data.currentLikeCount;
-        if(res.data.data.currentUserLike) {
+        if (res.data.data.currentUserLike) {
           this.openNotificationWithIcon('success', '点赞成功');
         } else {
           this.openNotificationWithIcon('success', '已取消点赞');
         }
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '操作失败');
       }
     },
     async reportComment(commentId: string, reason: string = 'no reason') {
       try {
-        await ReportComment(this.postId, commentId,reason);
+        await ReportComment(this.postId, commentId, reason);
         this.openNotificationWithIcon('success', '举报成功');
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '举报失败');
       } finally {
-        this.reportInfo.type='';
-        this.reportInfo.reason='';
+        this.reportInfo.type = '';
+        this.reportInfo.reason = '';
       }
     },
     async toggleLikeComment(commentId: string) {
       try {
         let res = await toggleLikeComment(this.postId, commentId);
-        if(res.data.data.currentUserLike) {
+        if (res.data.data.currentUserLike) {
           this.openNotificationWithIcon('success', '点赞成功');
         } else {
           this.openNotificationWithIcon('success', '已取消点赞');
         }
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '操作失败');
+      }
+    },
+    async onDeleteComment(commentId: string) {
+      try {
+        await deleteComment(this.postId, commentId);
+        this.openNotificationWithIcon('success', '删评论成功');
+
+        this.comments = this.comments.filter((curVal, index) => {
+          // FIXME: now only works when both using `.toString()` or both not using that ...
+          return curVal.commentId.toString() !== commentId.toString()
+        })
+      } catch (e) {
+        this.openNotificationWithIcon('error', '删评论失败');
       }
     },
     async onComment() {
       try {
         let res = await commentToPost(this.postId, this.inputComment);
-        this.openNotificationWithIcon('success','评论成功');
-      } catch(e) {
-        this.openNotificationWithIcon('error','评论失败');
+        this.openNotificationWithIcon('success', '评论成功');
+      } catch (e) {
+        this.openNotificationWithIcon('error', '评论失败');
       } finally {
-        this.inputComment='';
+        this.inputComment = '';
         this.getComments();
         this.inputting = false;
       }
@@ -180,16 +196,16 @@ export default {
       try {
         await sharePost(this.postId);
         this.openNotificationWithIcon('success', '分享成功')
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '分享失败')
       }
     },
     async onOk(type: string) {
-      if(type === 'comment') {
+      if (type === 'comment') {
         await this.reportComment(this.postId,
-          this.reportInfo.commentId, this.reportInfo.reason);       
+          this.reportInfo.commentId, this.reportInfo.reason);
       } else {
-          this.reportToPost();
+        this.reportToPost();
       }
       this.onCancel();
     },
