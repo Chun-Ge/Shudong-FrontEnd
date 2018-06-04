@@ -2,7 +2,6 @@ export interface Post {
     postId: number,
     author: string,
     title: string,
-    summary: string,
     likeCount: number,
     commentCount: number
     content?: string
