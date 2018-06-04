@@ -1,9 +1,9 @@
 <template lang='pug'>
 .card-container
   .loading(v-if='loading')
-    v-card(style="max-width: 500px; min-width: 300px" :title="totalTitle" loading)
+    v-card(style="width: 100%" :title="totalTitle" loading)
   .loaded(v-else)
-    v-card(:title='totalTitle' :bordered='false' style='max-width: 500px; min-width: 300px')
+    v-card(:title='totalTitle' :bordered='false' style='width: 100%')
       .card-header(slot='extra')
         .concrete
         .setting
@@ -11,12 +11,14 @@
             a.ant-dropdown-link(href='javascript:;' slot='title')
               | 更多
               v-icon(type='down')
-            v-dropdown-menu(slot='menu')
+            v-dropdown-menu(slot='menu' v-if='!modalVisible')
               v-dropdown-item(index='0')
-                a.follow(@click='onStar') 关注帖子
+                a.deletePost(@click='onDeletePost') 删除帖子
               v-dropdown-item(index='1')
-                a.ignore(@click='onIgnore') 忽略帖子
+                a.follow(@click='onStar') 关注帖子
               v-dropdown-item(index='2')
+                a.ignore(@click='onIgnore') 忽略帖子
+              v-dropdown-item(index='3')
                 a.report(@click='showModalReportPost') 举报滥用行为
       .card-content
         .text
@@ -38,12 +40,12 @@
             span {{ '评论&ensp;(共' + comments.length + '条)' }}
           .preview(v-if='!showMoreComments')
             .comment(v-for='comment in previewComment')
-              span.username {{ comment.author + ':&ensp;'}}
+              span.email {{ comment.author + ':&ensp;'}}
               span {{ comment.content }}
           .total-comments(v-else)
             .comment(v-for='comment in comments')
-              .username-wrapper
-                span.username {{ comment.author + '&ensp;'}}
+              .email-wrapper
+                span.email {{ comment.author + '&ensp;'}}
                 span(v-if='comment["like_count"] && comment["like_count"] !== 0')
                   | {{ '+' + comment["like_count"] }}
               .comment-content {{ comment.content }}
@@ -54,21 +56,22 @@
           .before-input(v-if='!inputting')
             .input
               v-input(placeholder="发表评论" @input='inputting = true')
-            .share(@click='onShare')
-              v-button(type='default' icon='share-alt' shape='circle')
             .like(@click='toggleLikePost')
               div(@click='toggleLikeButtonType')
                 v-button(:type='likeButtonType' icon='like')
                   span {{ likeCountPost }}
+            .share(@click='onShare')
+              v-button(type='default' icon='share-alt' shape='circle')
           .inputting(v-else)
-            .input
+            .input(@keyup.enter='onComment')
               v-input(placeholder="发表评论" v-model='inputComment')
             .to-do
               a.option.cancel(@click='inputting = false') 取消
               a.option.confirm(@click='onComment') 发布
   v-modal(v-model='modalVisible' title='举报'
     @onOk='onOk' @onCancel='onCancel')
-    v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
+    .input(@keyup.enter='onOk')
+      v-input(placeholder='请输入举报原因' v-model='reportInfo.reason')
 </template>
 
 <script src='./card.component.ts' lang='ts'></script>

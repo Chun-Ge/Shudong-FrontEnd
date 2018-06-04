@@ -1,6 +1,11 @@
+import { Post } from './post'
+import { Comment } from './comment'
 export interface UserInfo {
-    username?: string,
-    userId?: string,
-    password?: string,
-    tel?: string
+    user: {
+        userId: number
+    },
+    likePosts?: Post[],
+    likeComments?: Comment[],
+    starPosts?: Post[],
+    starComments?: Comment[]
 }
