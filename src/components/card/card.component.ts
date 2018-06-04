@@ -100,7 +100,7 @@ export default {
         await deletePost(this.postId);
         this.openNotificationWithIcon('success', '删帖成功');
         // console.log(this)
-        // this.$emit('deletePost', postId);
+        this.$emit('deletePost', this.postId);
       } catch(e) {
         this.openNotificationWithIcon('error', '删帖失败');
       }

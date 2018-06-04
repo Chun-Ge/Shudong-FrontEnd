@@ -13,7 +13,7 @@
               v-icon(type='down')
             v-dropdown-menu(slot='menu' v-if='!modalVisible')
               v-dropdown-item(index='0')
-                a.deletePost(@click='onDeletePost(); $emit("deletePost", postId)') 删除帖子
+                a.deletePost(@click='onDeletePost()') 删除帖子
               v-dropdown-item(index='1')
                 a.follow(@click='onStar') 关注帖子
               v-dropdown-item(index='2')
