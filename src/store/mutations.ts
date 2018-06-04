@@ -1,5 +1,6 @@
 import {
     SET_USERINFO,
+    SET_JWTAUTH,
     SET_TOPBARTEXT,
     TOGGLE_MENU,
     CLEARDATA,
@@ -14,6 +15,9 @@ export default {
             ...userInfo
         };
     },
+    [SET_JWTAUTH](state, content: string) {
+        state.jwtAuth = content;
+    },
     [SET_TOPBARTEXT](state, content: string) {
         state.topbarText = content;
     },
@@ -25,12 +29,10 @@ export default {
         // keys.forEach((curVal: string) => {
         //     state[curVal] = undefined;
         // })
+        state.jwtAuth = '';
         state.hiddenMenu = false;
         state.topbarText = '首页';
-        state.userInfo = {
-            userId: '',
-            username: ''
-        }
+        state.userInfo = {};
         state.PULL_LEFT = false;
     },
 }

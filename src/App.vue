@@ -20,3 +20,18 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 </style>
+
+
+<style lang='stylus'>
+
+#edit-post
+  .post-title .ant-input
+  .post-body  .ant-input
+    border: none
+
+#edit-post .post-title .ant-input::placeholder
+  font-size: 120%
+  font-weight: bolder
+  color: black
+
+</style>
