@@ -4,19 +4,19 @@ import { UserInfo } from '../model/user'
 
 /**
  * 用户登录
- * @param email 
- * @param password 
+ * @param email
+ * @param password
  */
  export const login = (email: string, password: string): Promise<Response<{userId: number}>> => {
      return HttpService.post('/login',{
          email: email,
-         password: password 
+         password: password
      })
  }
 
 /**
  * 用户登出
- * @param userId 
+ * @param userId
  */
 export const logout = (userId: string): Promise<Response<any>> => {
     return HttpService.post('/logout', {
@@ -26,8 +26,8 @@ export const logout = (userId: string): Promise<Response<any>> => {
 
 /**
  * 用户注册
- * @param email 
- * @param password 
+ * @param email
+ * @param password
  */
 export const register = (email: string, password: string): Promise<Response<{userId: number}>> => {
     return HttpService.post('/users', {
@@ -38,7 +38,7 @@ export const register = (email: string, password: string): Promise<Response<{use
 
 /**
  * 获取用户信息
- * @param userId 
+ * @param userId
  */
 export const retrieveUserInfo = (userId: string): Promise<Response<UserInfo>> => {
     return HttpService.get(`/users/${userId}`);
@@ -47,7 +47,7 @@ export const retrieveUserInfo = (userId: string): Promise<Response<UserInfo>> =>
 /**
  * 修改用户信息
  * @param userId
- * @param userInfo 
+ * @param userInfo
  */
 export const modifyUserInfo = (userId: string, userInfo: UserInfo): Promise<Response<UserInfo>> => {
     return HttpService.patch(`/users/${userId}`, userInfo);
@@ -55,9 +55,9 @@ export const modifyUserInfo = (userId: string, userInfo: UserInfo): Promise<Resp
 
 /**
  * 注销用户
- * @param userId 
+ * @param userId
  * @param email
- * @param password 
+ * @param password
  */
 export const deleteUser = (userId: string, email: string,password: string): Promise<Response<any>> => {
     return HttpService.delete(`/users/${userId}`, {
@@ -66,4 +66,32 @@ export const deleteUser = (userId: string, email: string,password: string): Prom
             password: password
         },
     })
+}
+
+/**
+ * get Auth Code
+ * @param email
+ */
+export const getAuthCode = (email: string): Promise<Response<any>> => {
+  return HttpService.post(`/authcode`, {
+      data: {
+          email: email,
+      },
+  })
+}
+
+/**
+ * reset password
+ * @param email
+ * @param authCode
+ * @param password
+ */
+export const resetPassword = (email: string, authCode: string, password: string): Promise<Response<any>> => {
+  return HttpService.patch(`/reset_password`, {
+      data: {
+          email: email,
+          authCode: authCode,
+          newPassword: password,
+      },
+  })
 }

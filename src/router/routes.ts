@@ -4,6 +4,7 @@ import login from '@/pages/login/login.vue';
 import register from '@/pages/register/register.vue';
 import home from '@/pages/home/home.vue';
 import discover from '@/pages/discover/discover.vue';
+import forgetPassword from '@/pages/forgetPassword/forgetPassword.vue';
 import topic from '@/pages/topic/topic.vue';
 import App from '@/App.vue';
 import store from '../store';
@@ -23,10 +24,14 @@ const children = [
     path: '/discover',
     name: 'discover',
     component: discover
-  }, 
+  },
   {
     path: '/topic',
     name: 'topic'
+  },
+  {
+    path: '/forgetPassword',
+    name: 'forgetPassword',
   },
   {
     path: 'profile',
@@ -50,6 +55,12 @@ export default  [
       name: 'register',
       component: register,
       meta: { auth: false }
+    },
+    {
+      path: '/forget-password',
+      name: 'forgetPassword',
+      component: forgetPassword,
+      meta: { auth: false },
     },
     {
       path: '/',
