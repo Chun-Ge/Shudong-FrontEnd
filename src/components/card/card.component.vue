@@ -52,6 +52,13 @@
               .interactive
                 a.like(@click='toggleLikeComment(comment.commentId)') +1
                 a.report(@click='showModalReportComment(comment.commentId)') 举报
+                .more-menu
+                  v-dropdown(placement='bottomRight' trigger='click')
+                    a.ant-dropdown-link(href='javascript:;' slot='title' title='更多')
+                      v-icon(type='ellipsis' style='transform: rotate(90deg);')
+                    v-dropdown-menu(slot='menu')
+                      v-dropdown-item(index='0')
+                        a.delete(@click='onDeleteComment(comment.commentId)') 删除
         .draft-editor
           .before-input(v-if='!inputting')
             .input
