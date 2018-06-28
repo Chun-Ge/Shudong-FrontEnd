@@ -10,7 +10,8 @@
             v-input(type='text' v-model='email' size='large' placeholder="邮箱")
           .input(@keyup.enter='submit')
             v-input(type='password' v-model='password' size='large' placeholder="密码")
-        .login-option 忘记密码？
+        .login-option
+          router-link(:to='"forget-password"') 忘记密码？
         .login-confirm(@click='submit')
           v-button.btn(type="primary" :loading='loading') 登陆
 
