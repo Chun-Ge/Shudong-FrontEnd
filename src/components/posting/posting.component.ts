@@ -12,7 +12,7 @@ export default {
       modalVisible: false,
 
       categories: ['a', 'b', 'c',],
-      currentCategory: '',
+      postCategory: '',
 
       postTitle: '',
       postContent: '',
@@ -35,7 +35,7 @@ export default {
         log('>>> fetching categories, error:', err);
       }
     },
-    openNotificationWithIcon(type: string, title: string, descrip: string) {
+    openNotificationWithIcon(type: string, title: string, descrip?: string) {
       this.$notification[type]({
         message: title,
         description: descrip
@@ -44,11 +44,14 @@ export default {
 
     async onOk() {
       try {
-        await createPost(this.userInfo.email, this.postTitle, this.postContent);
-        this.CLEARDATA();
-        this.openNotificationWithIcon('success', 'post 成功');
+        let res = await createPost(this.postCategory, this.postTitle, this.postContent);
+        // this.CLEARDATA();
+        this.openNotificationWithIcon('success', 'post 成功', );
+        // this.$router.push('/')
+        this.$router.go(0);
+        this.modalVisible = false;
       } catch (err) {
-        this.openNotificationWithIcon('error', 'post 失败');
+        this.openNotificationWithIcon('error', 'post 失败', err.toString());
       }
     },
 

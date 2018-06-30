@@ -9,7 +9,7 @@
       .post-category
         span()| 发布到
         v-icon(type='caret-right') &nbps; |
-        v-select(:showSearch='true' style='min-width: 100px;' v-model.trim='currentCategory' placeholder='选择版块')
+        v-select(:showSearch='true' style='min-width: 100px;' v-model.trim='postCategory' placeholder='选择版块')
           .item(v-for='category in categories')
             v-option(v-bind:value='category') {{ category }}
       .more-menu

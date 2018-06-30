@@ -1,4 +1,4 @@
-import { HttpService } from  './api.service';
+import { HttpService } from './api.service';
 import { Response } from '../model/response'
 import { Post, SpecificPost, Like, Share } from '../model/post'
 
@@ -7,23 +7,23 @@ import { Post, SpecificPost, Like, Share } from '../model/post'
  * @param limitNum
  * @param offset
  */
-export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<{posts: Post[]}>> => {
+export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<{ posts: Post[] }>> => {
   return HttpService.get(`/posts?limit=${limitNum}&offset=${offset}`);
 }
 
 /**
  * 創建帖子
- * @param email
+ * @param category
  * @param title
  * @param content
  */
-export const createPost = (email: string, title: string, content: string): Promise<Response<{post: Post}>> => {
+export const createPost = (category: string, title: string, content: string): Promise<Response<{ post: Post }>> => {
   return HttpService.post('/posts', {
-    email,
-    post: {
+    "post": {
+      "categoryName": category,
       title,
-      content
-    }
+      content,
+    },
   });
 }
 
