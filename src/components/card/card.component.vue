@@ -71,7 +71,7 @@
               v-button(type='default' icon='share-alt' shape='circle')
           .inputting(v-else)
             .input(@keyup.enter='onComment')
-              v-input(placeholder="发表评论" v-model='inputComment')
+              v-input(placeholder='发表评论' v-model.trim='inputComment' type='text')
             .to-do
               a.option.cancel(@click='inputting = false') 取消
               a.option.confirm(@click='onComment') 发布
