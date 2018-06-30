@@ -5,10 +5,10 @@ import postCard from '@/components/card/card.component.vue'
 function getDocumentTop() {
   let scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
   if (document.body) {
-      bodyScrollTop = document.body.scrollTop;
+    bodyScrollTop = document.body.scrollTop;
   }
   if (document.documentElement) {
-      documentScrollTop = document.documentElement.scrollTop;
+    documentScrollTop = document.documentElement.scrollTop;
   }
   scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
   return scrollTop;
@@ -18,9 +18,9 @@ function getDocumentTop() {
 function getWindowHeight() {
   let windowHeight = 0;
   if (document.compatMode == "CSS1Compat") {
-      windowHeight = document.documentElement.clientHeight;
+    windowHeight = document.documentElement.clientHeight;
   } else {
-      windowHeight = document.body.clientHeight;
+    windowHeight = document.body.clientHeight;
   }
   return windowHeight;
 }
@@ -29,10 +29,10 @@ function getWindowHeight() {
 function getScrollHeight() {
   let scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
   if (document.body) {
-      bodyScrollHeight = document.body.scrollHeight;
+    bodyScrollHeight = document.body.scrollHeight;
   }
   if (document.documentElement) {
-      documentScrollHeight = document.documentElement.scrollHeight;
+    documentScrollHeight = document.documentElement.scrollHeight;
   }
   scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
   return scrollHeight;
@@ -51,13 +51,13 @@ export default {
   },
   components: {
     'post-card': postCard
-   },
+  },
   async beforeMount() {
     // console.log('init: ', this)
     await this.init()
   },
   computed: {
-    postGroups: function() {
+    postGroups: function () {
       let arr = [[], [], []];
       this.posts.forEach((curVal, index) => {
         arr[index % 3].push(curVal);
@@ -69,32 +69,32 @@ export default {
   methods: {
     async init() {
       await this.getPosts();
-      window.onscroll =  async () => {
+      window.onscroll = async () => {
         //监听事件内容
         // console.log('document: ', getDocumentTop());
         // console.log('window: ', getWindowHeight());
         // console.log('Scroll: ', getScrollHeight());
-        if(getDocumentTop() + getWindowHeight() ===  getScrollHeight() && !this.noMoreData){
-            //当滚动条到底时,这里是触发内容
-            //异步请求数据,局部刷新dom
-            this.loading = true;
-            try {
-              await this.getPosts();
-            } catch(e) {
-              this.openNotificationWithIcon('error', '已经没更多数据');
-              this.noMoreData = true;
-            } finally {
-              this.loading = false;
-            }
+        if (getDocumentTop() + getWindowHeight() === getScrollHeight() && !this.noMoreData) {
+          //当滚动条到底时,这里是触发内容
+          //异步请求数据,局部刷新dom
+          this.loading = true;
+          try {
+            await this.getPosts();
+          } catch (e) {
+            this.openNotificationWithIcon('error', '已经没更多数据');
+            this.noMoreData = true;
+          } finally {
+            this.loading = false;
+          }
         }
-    }
+      }
     },
 
     openNotificationWithIcon(type: string, title: string, descrip: string) {
       this.$notification[type]({
         message: title,
         description: descrip,
-      })  
+      })
     },
     deletePost(postId: string) {
       // console.log("postId: ", postId);
@@ -106,7 +106,7 @@ export default {
       try {
         const response = await retrieveRecentPosts(this.limitNum, this.offset);
         this.posts = response.data.data.posts;
-      } catch(e) {
+      } catch (e) {
         this.openNotificationWithIcon('error', '获取posts数据失败');
       }
       // const simplePosts = response.data.data;
@@ -126,5 +126,5 @@ export default {
     }
   },
 
-  
+
 }

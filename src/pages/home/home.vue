@@ -3,7 +3,7 @@
     .posts-container
       .flow(v-for='postSet in postGroups')
         .post-wrapper(v-for='p in postSet')
-          post-card(:postId='String(p.postid)'
+          post-card(:postId='String(p.postId)'
             :author='p.author'
             :title='p.title'
             :content='p.content'
