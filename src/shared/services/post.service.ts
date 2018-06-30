@@ -48,7 +48,7 @@ export const deletePost = (postId: string): Promise<Response<any>> => {
  * @param postId
  */
 export const toggleLikePost = (postId: string): Promise<Response<Like>> => {
-  return HttpService.get(`/posts/postId/like`);
+  return HttpService.get(`/posts/${postId}/like`);
 }
 
 /**
