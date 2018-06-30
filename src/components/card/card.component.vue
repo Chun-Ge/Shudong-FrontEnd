@@ -46,8 +46,8 @@
             .comment(v-for='comment in comments')
               .email-wrapper
                 span.email {{ comment.author + '&ensp;'}}
-                span(v-if='comment["like_count"] && comment["like_count"] !== 0')
-                  | {{ '+' + comment["like_count"] }}
+                span(v-if='comment["likeCount"] && comment["likeCount"] !== 0')
+                  | {{ '+' + comment["likeCount"] }}
               .comment-content {{ comment.content }}
               .interactive
                 a.like(@click='toggleLikeComment(comment.commentId)') +1
@@ -64,14 +64,14 @@
             .input
               v-input(placeholder="发表评论" @input='inputting = true')
             .like(@click='toggleLikePost')
-              div(@click='toggleLikeButtonType')
+              div(@click='')
                 v-button(:type='likeButtonType' icon='like')
-                  span {{ likeCountPost }}
+                  span {{ likeCountForThisPost }}
             .share(@click='onShare')
               v-button(type='default' icon='share-alt' shape='circle')
           .inputting(v-else)
             .input(@keyup.enter='onComment')
-              v-input(placeholder="发表评论" v-model='inputComment')
+              v-input(placeholder='发表评论' v-model.trim='inputComment' type='text')
             .to-do
               a.option.cancel(@click='inputting = false') 取消
               a.option.confirm(@click='onComment') 发布

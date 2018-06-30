@@ -7,7 +7,7 @@
             :author='p.author'
             :title='p.title'
             :content='p.content'
-            :likeCountPost='p.likeCount'
+            :likeCount='p.likeCount'
             :commentCount='p.commentCount'
             @deletePost='deletePost($event)')
     .loading(v-if='loading')

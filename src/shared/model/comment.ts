@@ -3,7 +3,7 @@ export interface Comment {
   author: string,
   relatedPostId: number,
   content: string,
-  like_count: number
+  likeCount: number
 }
 
 export interface Comments {

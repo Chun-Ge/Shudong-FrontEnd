@@ -1,35 +1,35 @@
-import { HttpService } from  './api.service';
+import { HttpService } from './api.service';
 import { Response } from '../model/response'
 import { Post, SpecificPost, Like, Share } from '../model/post'
 
 /**
  * 獲取最近發佈的帖子集
- * @param limitNum 
- * @param offset 
+ * @param limitNum
+ * @param offset
  */
-export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<{posts: Post[]}>> => {
-  return HttpService.get(`/posts?limitNum=${limitNum}&offset=${offset}`);
+export const retrieveRecentPosts = (limitNum: number, offset: number): Promise<Response<{ posts: Post[] }>> => {
+  return HttpService.get(`/posts?limit=${limitNum}&offset=${offset}`);
 }
 
 /**
  * 創建帖子
- * @param email 
- * @param title 
- * @param content 
+ * @param category
+ * @param title
+ * @param content
  */
-export const createPost = (email: string, title: string, content: string): Promise<Response<{post: Post}>> => {
+export const createPost = (category: string, title: string, content: string): Promise<Response<{ post: Post }>> => {
   return HttpService.post('/posts', {
-    email,
-    post: {
+    "post": {
+      "categoryName": category,
       title,
-      content
-    }
+      content,
+    },
   });
 }
 
 /**
  * 獲取帖子
- * @param postId 
+ * @param postId
  */
 export const retrieveSpecificPost = (postId: string): Promise<Response<SpecificPost>> => {
   return HttpService.get(`/posts/${postId}`);
@@ -37,7 +37,7 @@ export const retrieveSpecificPost = (postId: string): Promise<Response<SpecificP
 
 /**
  * 刪除帖子
- * @param postId 
+ * @param postId
  */
 export const deletePost = (postId: string): Promise<Response<any>> => {
   return HttpService.delete(`/posts/${postId}`);
@@ -45,16 +45,16 @@ export const deletePost = (postId: string): Promise<Response<any>> => {
 
 /**
  * 點贊或取消點贊帖子
- * @param postId 
+ * @param postId
  */
 export const toggleLikePost = (postId: string): Promise<Response<Like>> => {
-  return HttpService.get(`/posts/postId/like`);
+  return HttpService.get(`/posts/${postId}/like`);
 }
 
 /**
  * 舉報帖子
- * @param postId 
- * @param reason 
+ * @param postId
+ * @param reason
  */
 export const reportPost = (postId: string, reason: string): Promise<Response<any>> => {
   return HttpService.post(`/posts/${postId}/report`, {
@@ -64,7 +64,7 @@ export const reportPost = (postId: string, reason: string): Promise<Response<any
 
 /**
  * 關注帖子
- * @param postId 
+ * @param postId
  */
 export const toggleStarPost = (postId: string): Promise<Response<any>> => {
   return HttpService.get(`/posts/${postId}/star`);
@@ -72,8 +72,16 @@ export const toggleStarPost = (postId: string): Promise<Response<any>> => {
 
 /**
  * 分享帖子
- * @param postId 
+ * @param postId
  */
 export const sharePost = (postId: string): Promise<Response<Share>> => {
   return HttpService.get(`/posts/${postId}/share`);
+}
+
+
+/**
+ * fetch category list
+ */
+export const fetchCategories = (): Promise<Response<any>> => {
+  return HttpService.get(`/posts/categories`);
 }

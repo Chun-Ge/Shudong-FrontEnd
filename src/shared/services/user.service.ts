@@ -41,7 +41,7 @@ export const register = (email: string, password: string): Promise<Response<{use
  * @param userId
  */
 export const retrieveUserInfo = (userId: string): Promise<Response<UserInfo>> => {
-    return HttpService.get(`/users/${userId}`);
+    return HttpService.get(`/userinfo`);
 }
 
 /**

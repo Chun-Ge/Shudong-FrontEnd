@@ -33,7 +33,8 @@ export default {
       type: String,
       required: true
     },
-    likeCountPost: Number,
+    currentUserLike: Boolean,
+    likeCount: Number,
     commentCount: Number
   },
 
@@ -45,10 +46,11 @@ export default {
         id: ''
       },
       modalVisible: false,
-      likeButtonType: 'default',
+
       loading: true,
       reportReason: '',
-      currentUserLikePost: false,
+      currentUserLikeThisPost: false,
+      likeCountForThisPost: this.likeCount,  // fail init
       comments: [],
       readMore: false,
       showMoreComments: false,
@@ -63,7 +65,11 @@ export default {
     },
     totalTitle() {
       return this.author + ' > ' + this.title;
-    }
+    },
+
+    likeButtonType() {
+      return this.currentUserLikeThisPost ? 'primary' : 'default';
+    },
   },
 
   async beforeMount() {
@@ -71,18 +77,12 @@ export default {
   },
 
   methods: {
-    toggleLikeButtonType() {
-      console.log('this.buttonType');
-      if (this.likeButtonType === 'default') {
-        this.likeButtonType = 'primary';
-      } else {
-        this.likeButtonType = 'default';
-      }
-    },
     async init() {
       await this.getComments();
       this.loading = false;
+      this.likeCountForThisPost = this.likeCount;
     },
+
     async getComments() {
       try {
         let res = await retrieveComments(this.postId);
@@ -133,9 +133,9 @@ export default {
     async toggleLikePost() {
       try {
         let res = await toggleLikePost(this.postId);
-        this.currentUserLikePost = res.data.data.currentUserLike;
-        this.likeCountPost = res.data.data.currentLikeCount;
-        if (res.data.data.currentUserLike) {
+        this.currentUserLikeThisPost = res.data.data.currentUserLike;
+        this.likeCountForThisPost = res.data.data.currentLikeCount;
+        if (this.currentUserLikeThisPost) {
           this.openNotificationWithIcon('success', '点赞成功');
         } else {
           this.openNotificationWithIcon('success', '已取消点赞');

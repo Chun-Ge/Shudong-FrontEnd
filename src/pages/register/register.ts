@@ -1,5 +1,6 @@
 import { mapMutations, mapActions } from "vuex";
 import { register } from "../../shared/services/user.service";
+import { login } from "../../shared/services/user.service";
 
 const err = [
     {
@@ -37,7 +38,7 @@ export default {
               message: title,
               description: descrip
             })
-            
+
         },
         validate(email: string, password: string) {
             if(this.email === '' || this.password === '') {
@@ -54,7 +55,7 @@ export default {
                 return err[2];
             }
             return null;
-            
+
         },
 
         async submit() {
@@ -65,19 +66,26 @@ export default {
                 return;
             }
             try {
-                let res = await register(this.email, this.password);
-                this.SET_JWTAUTH(res.headers.authorization);
-                await this.getUserInfo(res.data.data.userId);
-                this.$router.push('/')
-                this.openNotificationWithIcon('success', '注册成功', `欢迎回来`);
+                await register(this.email, this.password);
 
-            } catch(error) {
+                this.openNotificationWithIcon('success', '注册成功', `现在自动为您登录`);
+                try {
+                  let res = await login(this.email, this.password);
+                  this.SET_JWTAUTH(res.headers.authorization);
+                  await this.getUserInfo(res.data.data.userId);
+                  this.$router.push('/')
+                  this.openNotificationWithIcon('success', '登录成功', `欢迎使用`);
+                } catch (error) {
+                  this.openNotificationWithIcon('success', '登录失败', `烦请手动登录`);
+                  this.$router.push('/login');
+                }
+            } catch (error) {
                 this.openNotificationWithIcon('error', '注册失败', `请重新注册`);
 
             } finally {
                 this.loading = false;
             }
         }
-        
+
     }
 }
