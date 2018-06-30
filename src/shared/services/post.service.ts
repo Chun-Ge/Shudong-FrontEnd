@@ -77,3 +77,11 @@ export const toggleStarPost = (postId: string): Promise<Response<any>> => {
 export const sharePost = (postId: string): Promise<Response<Share>> => {
   return HttpService.get(`/posts/${postId}/share`);
 }
+
+
+/**
+ * fetch category list
+ */
+export const fetchCategories = (): Promise<Response<any>> => {
+  return HttpService.get(`/posts/categories`);
+}

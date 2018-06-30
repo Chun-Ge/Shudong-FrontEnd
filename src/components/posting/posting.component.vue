@@ -6,12 +6,12 @@
     @onOk='onOk' @onCancel='onCancel'
     okText='发布' cancelText='取消')
     #edit-post
-      .post-topic
+      .post-category
         span()| 发布到
         v-icon(type='caret-right') &nbps; |
-        v-select(v-model.trim='currentTopic' placeholder='选择版块')
-          .item(v-for='topic in topics')
-            option.email {{ topic.name }}
+        v-select(:showSearch='true' style='min-width: 100px;' v-model.trim='currentCategory' placeholder='选择版块')
+          .item(v-for='category in categories')
+            v-option(v-bind:value='category') {{ category }}
       .more-menu
         v-dropdown(placement='bottomRight' trigger='click')
           a.ant-dropdown-link(href='javascript:;' slot='title' title='更多')
